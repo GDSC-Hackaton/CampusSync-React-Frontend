@@ -1,0 +1,10 @@
+.navbar {
+    width: 100vw;
+    height: 70px;
+    box-shadow: 5px 0px 5px black;
+}
+.footer {
+    width: 100vw;
+    height: 70px;
+    box-shadow: 5px 0px 5px black;
+}
