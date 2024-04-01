@@ -1,0 +1,71 @@
+.auth-container {
+  width: 90%;
+  margin: 10px auto;
+}
+.auth-box {
+  width: 100%;
+  height: 550px;
+  display: flex;
+}
+.auth-left,
+.auth-right {
+  width: 50%;
+  height: 100%;
+  margin-bottom: 10px;
+}
+.auth-right-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px 0px 0px 20px;
+  object-fit: cover;
+  animation: fadeIn 2s ease-in-out 0s 1 ;
+
+}
+.sign-up-title {
+  font-family: var(--font-family);
+  font-size: 2.2rem;
+  color: red;
+}
+.signup-form {
+  margin: 10px;
+}
+.signup-input {
+  display: block;
+  width: 80%;
+  outline: none;
+  padding: 15px;
+  margin: 10px;
+  border: none;
+}
+.signup-input:focus {
+    border-bottom: 1px solid red;
+
+}
+.register-btn {
+  color: rgb(255, 255, 255);
+  background-color: rgb(88, 88, 255);
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  width: 80%;
+  margin: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+@media only screen and (max-width: 760px) {
+  .auth-right {
+    display: none; /* Hide .auth-right on screens narrower than 760px */
+  }
+  .auth-left {
+    width: 100%; /* Make .auth-left take up full width on screens narrower than 760px */
+  }
+}
