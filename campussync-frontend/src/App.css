@@ -7,7 +7,7 @@
 }
 body {
   overflow-x: hidden;
-
+  font-family: var(--font-family);
 }
 .wrapper {
   width: 100vw;
@@ -21,5 +21,8 @@ body {
 }
 a {
   text-decoration: none;
+}
+button{
+  cursor: pointer;
 }
 

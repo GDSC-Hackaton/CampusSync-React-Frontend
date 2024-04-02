@@ -11,15 +11,13 @@ function App() {
       <Router>
         <div className="wrapper">
           <div className="main-content">
-          <NavBar />
-          
-          <Routes>
-            <Route path="/" element={<Signin />}></Route>
-            <Route path="/register" element={<Signup />}></Route>
-
-          </Routes>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<Signin />}></Route>
+              <Route path="/register" element={<Signup />}></Route>
+            </Routes>
           </div>
-          <Footer/>
+          <Footer />
         </div>
       </Router>
     </>

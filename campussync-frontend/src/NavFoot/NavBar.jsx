@@ -1,9 +1,12 @@
 import "./nav&foot.css";
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <img className="navbar-logo " src="/logocampus.png"></img>
+        <Link to="/">
+          <img className="navbar-logo " src="/logocampus.png"></img>
+        </Link>
       </div>
       <div className="navbar-list">
         <ul>

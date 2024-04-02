@@ -4,13 +4,13 @@
 }
 .auth-box {
   width: 100%;
-  height: 550px;
+  height: auto;
   display: flex;
 }
 .auth-left,
 .auth-right {
   width: 50%;
-  height: 100%;
+  height: auto;
   margin-bottom: 10px;
 }
 .auth-right-pic {
@@ -18,13 +18,13 @@
   height: 100%;
   border-radius: 20px 0px 0px 20px;
   object-fit: cover;
-  animation: fadeIn 2s ease-in-out 0s 1 ;
+  animation: fadeIn 1s ease-in 0s 1 ;
 
 }
 .sign-up-title {
   font-family: var(--font-family);
   font-size: 2.2rem;
-  color: red;
+  color: rgb(0, 0, 0);
 }
 .signup-form {
   margin: 10px;
@@ -33,9 +33,11 @@
   display: block;
   width: 80%;
   outline: none;
-  padding: 15px;
-  margin: 10px;
+  padding: 20px;
+  margin-left: 5px;
   border: none;
+  background-color: none;
+  font-family: var(--font-family);
 }
 .signup-input:focus {
     border-bottom: 1px solid red;
@@ -63,9 +65,34 @@
 
 @media only screen and (max-width: 760px) {
   .auth-right {
-    display: none; /* Hide .auth-right on screens narrower than 760px */
+    display: none;
   }
   .auth-left {
-    width: 100%; /* Make .auth-left take up full width on screens narrower than 760px */
+    width: 100%; 
   }
+}
+.signup-input-container {
+  position: relative;
+}
+
+.signup-input-container i {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.error-container {
+  width: 80%;
+  border:1px solid red;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  padding: 10px;
+  color:red;
+  background-color: rgba(251, 16, 16, 0.2);
+}
+label {
+  color:rgb(152, 151, 151);
+  font-size: 0.6rem;
 }
