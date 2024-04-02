@@ -1,0 +1,88 @@
+.host-container {
+  box-shadow: 0 3px 10px -2px black;
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.host-container h1 {
+  font-size: 40px;
+  font-weight: bold;
+  font-style: italic;
+  cursor: pointer;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: start;
+  width: 100%;
+  padding-left: 150px;
+}
+
+.host-image {
+  width: 70%;
+  height: 150px;
+  background-color: rgb(221, 219, 219);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  margin-bottom: 30px;
+}
+
+.host-form-fill input {
+  border: none;
+  width: 80%;
+  height: 75px;
+  font-size: 20px;
+  color: rgb(161, 158, 158);
+  padding: 0px;
+  padding-left: 40px;
+  margin-bottom: 10px;
+  font-family: "Trebuchet MS";
+}
+
+.host-form-fill input:focus {
+  outline: none;
+}
+
+.host-add button {
+  width: 25%;
+  height: 40px;
+  background-color: transparent;
+  color: rgb(80, 79, 79);
+  box-shadow: 0 5px 10px -2px black;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: "Trebuchet MS";
+  border: none;
+  outline: none;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.host-add button:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  color: #000; /* Black text color on hover */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.host-add button:focus {
+  background-color: #f0f0f0; /* Light gray background when focused */
+  color: #000; /* Black text color when focused */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.host-add{
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    margin: 30px 0px;
+}
+
+.host-add-club{
+display: flex;
+align-items: center;
+gap: 10px;
+}
