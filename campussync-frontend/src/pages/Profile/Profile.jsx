@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./profile.css";
+import React from 'react'
+
 
 const Following = () => {
   return (

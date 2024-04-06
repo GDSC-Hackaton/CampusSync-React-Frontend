@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import "./nav&foot.css";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 const NavBar = () => {
+  const { user , logoutUser} = useContext(AuthContext);
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <Link to="/">
+        <Link to="/home">
           <img className="navbar-logo " src="/logocampus.png"></img>
         </Link>
       </div>
@@ -13,12 +16,25 @@ const NavBar = () => {
           <Link to="/events">
             <li className="navitem">Events</li>
           </Link>
-          <Link to='/hosts'>
+          <Link to="/hosts">
             <li className="navitem">Hosts</li>
           </Link>
           <Link to="/discussion">
             <li className="navitem">Discussion</li>
           </Link>
+
+          {user ? (
+            <li  className="navitem">
+              <span onClick={logoutUser}>Logout</span>
+              {user && <span> Hello {user.name} </span>}
+            </li>
+          ) : (
+            <Link to="/login">
+              <li className="navitem">
+                login
+              </li>
+            </Link>
+          )}
         </ul>
       </div>
       <div className="navbar-last">

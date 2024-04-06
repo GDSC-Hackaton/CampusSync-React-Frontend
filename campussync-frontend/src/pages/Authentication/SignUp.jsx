@@ -2,10 +2,12 @@ import "./auth.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { Link } from "react-router-dom";
 import ErrorCard from "./ErrorCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import axios from "axios";
+import AuthContext from "../../context/AuthContext";
 const Signup = () => {
   const [formdata, setData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
     confirm: "",
@@ -16,9 +18,10 @@ const Signup = () => {
     const { name, value } = e.target;
     setData({ ...formdata, [name]: value });
   };
+  const {loginUser}=useContext(AuthContext);
   const validateForm = () => {
     if (
-      formdata.username.trim() === "" ||
+      formdata.name.trim() === "" ||
       formdata.email.trim() === "" ||
       formdata.password.trim() === "" ||
       formdata.confirm.trim() === ""
@@ -26,34 +29,55 @@ const Signup = () => {
       setError("Some fields are empty!");
       return false;
     }
-    
-    if (formdata.username.trim().toLowerCase() !== formdata.username.trim()) {
-      setError("Username should be all lowercase");
+
+    if (formdata.name.trim().toLowerCase() !== formdata.name.trim()) {
+      setError("name should be all lowercase");
       return false;
     }
-    
+
     if (formdata.password.trim().length < 5) {
       setError("Password is too short");
       return false;
     }
-    
-    const hasRequiredCharacters = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{5,20}$/;
+
+    const hasRequiredCharacters =
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{5,20}$/;
     if (!hasRequiredCharacters.test(formdata.password.trim())) {
-      setError("Password must contain at least one uppercase letter, one lowercase letter, one digit, one symbol, and be between 5 to 20 characters");
+      setError(
+        "Password must contain at least one uppercase letter, one lowercase letter, one digit, one symbol, and be between 5 to 20 characters"
+      );
       return false;
     }
-    
+
     if (formdata.confirm.trim() !== formdata.password.trim()) {
       setError("The two passwords don't match");
       return false;
     }
-    
+
     setShowError(false);
     return true;
+  };
+  const registerUser = async () => {
+    try {
+      const response = await axios.post(
+        "https://natty.pythonanywhere.com/user/users/",
+        {
+          name: formdata.name,
+          email: formdata.email,
+          password: formdata.password,
+        }
+      );
+      loginUser(formdata.email.trim(),formdata.password.trim())
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      registerUser();
+      l
     } else {
       setShowError(true);
     }
@@ -75,13 +99,12 @@ const Signup = () => {
                   onChange={handleChange}
                   className="signup-input"
                   placeholder="Username"
-                  name="username"
+                  name="name"
                   type="text"
-                  id="username"
+                  id="name"
                 />
-
               </div>
-              <label htmlFor="username">Username should be all lowercase</label>
+              <label htmlFor="name">Username should be all lowercase</label>
 
               <div className="signup-input-container">
                 <i className="fas fa-envelope"></i>
@@ -107,7 +130,10 @@ const Signup = () => {
                   id="password"
                 />
               </div>
-              <label htmlFor="password">Password must contain uppercase , lowercase , numbers and symbols minimum of 7 characters</label>
+              <label htmlFor="password">
+                Password must contain uppercase , lowercase , numbers and
+                symbols minimum of 7 characters
+              </label>
 
               <div className="signup-input-container">
                 <i className="fas fa-lock"></i>

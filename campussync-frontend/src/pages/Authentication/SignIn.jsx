@@ -1,34 +1,46 @@
-import { useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ErrorCard from "./ErrorCard";
+import AuthContext from "../../context/AuthContext";
+
 const Signin = () => {
+  const { authenticationError, loginUser } = useContext(AuthContext);
   const [formdata, setData] = useState({
     email: "",
     password: "",
   });
   const [showError, setShowError] = useState(false);
   const [error, setError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...formdata, [name]: value });
   };
+
   const validateForm = () => {
     if (formdata.email.trim() === "" || formdata.password.trim() === "") {
-      setError("Your Email or password is empty !");
+      setError(" Email and password are required !");
       return false;
-    }
-    if (formdata.password.trim().length < 5) {
-      setError("Password is too long");
     }
     return true;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      loginUser(formdata.email.trim(), formdata.password.trim());
     } else {
       setShowError(true);
     }
   };
+
+  useEffect(() => {
+    if (authenticationError) {
+      setShowError(true);
+      setError(authenticationError);
+    }
+  }, [authenticationError]);
+
   return (
     <>
       <div className="auth-container">
@@ -63,18 +75,19 @@ const Signin = () => {
               </button>
             </form>
             <span style={{ margin: "10px" }}>
-              Haven't Regsitered Yet ?{" "}
+              Haven't Registered Yet ?{" "}
               <Link to="/register" style={{ color: "red" }}>
                 Register
               </Link>
             </span>
           </div>
           <div className="auth-right">
-            <img className="auth-right-pic" src="/pointing.webp" />
+            <img className="auth-right-pic" src="/pointing.webp" alt="" />
           </div>
         </div>
       </div>
     </>
   );
 };
+
 export default Signin;
