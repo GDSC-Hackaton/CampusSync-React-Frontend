@@ -1,24 +1,33 @@
 import React from "react";
 import "./overlay.css";
 
-const AddEventOverlay = () => {
+const AddEventOverlay = ({ showOverlay, setshowOverlay }) => {
   const handleChange = (e) => {
     const poster_overlay = document.querySelector(".overlay-poster");
     poster_overlay.style.backgroundImage = `url(${URL.createObjectURL(
       e.target.files[0]
     )})`;
   };
-
+  document.body.style.overflow = "hidden"; // stop  backgroud scrolling when modal open
   return (
     <>
       <div className="overlay-container">
         <div className="overlay-box">
-          <i class="fa-solid fa-x"></i>
+          <i
+            onClick={() => {
+              document.body.style.overflowY = "scroll";
+              setshowOverlay(!showOverlay);
+            }}
+            class="fa-solid fa-x"
+          ></i>
           <form className="event-form" encType="multipart/form-data">
             <div className="overlay-poster">
-              <div className="upload-icon" >
-                <label  htmlFor="poster">
-                  <i className="fa-solid fa-upload"></i><p style={{color:"black",fontSize:"1.5rem"}}>Event Poster</p>
+              <div className="upload-icon">
+                <label htmlFor="poster">
+                  <i className="fa-solid fa-upload"></i>
+                  <p style={{ color: "black", fontSize: "1.5rem" }}>
+                    Event Poster
+                  </p>
                 </label>
               </div>
 

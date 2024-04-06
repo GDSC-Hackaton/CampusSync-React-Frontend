@@ -10,7 +10,7 @@ const NavBar = () => {
       </div>
       <div className="navbar-list">
         <ul>
-          <Link to="/add">
+          <Link to="/events">
             <li className="navitem">Events</li>
           </Link>
           <Link to='/hosts'>

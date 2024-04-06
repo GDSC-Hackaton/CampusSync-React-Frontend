@@ -12,6 +12,7 @@ import HostDetailCard from "./pages/HostsDetail/HostDetailCard";
 import HostDetailPage from "./pages/HostsDetail/HostDetailPage";
 import EventDetails from "./pages/Events/EventDetails";
 import Home from "./pages/Home/Home";
+import CurrentEvents from "./pages/Events/CurrentEvents";
 function App() {
   return (
     <>
@@ -25,7 +26,7 @@ function App() {
               <Route path="/register" element={<Signup />}></Route>
               <Route path="/profile" element={<Profile/>}></Route>
               <Route path="/hosts" element={<HostDetailPage/>}></Route>
-              <Route path="/add" element={<AddEventOverlay />}></Route>
+              <Route path="/events" element={<CurrentEvents />}></Route>
               <Route path="/discussion" element={<Discussion/>}></Route>
               <Route path="/event-detail/1/" element={<EventDetails/>}></Route>
             </Routes>
