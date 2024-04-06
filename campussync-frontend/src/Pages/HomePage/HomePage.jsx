@@ -9,9 +9,9 @@ const HomePage = () => {
   return (
     <div>
      <Navbar />
-     <Home />
- <TopEvents />
-<TopHosts />
+      <Home />
+    <TopEvents />
+    <TopHosts />
       <Footer />
     </div>
   )
