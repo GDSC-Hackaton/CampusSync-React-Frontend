@@ -10,13 +10,21 @@ const NavBar = () => {
       </div>
       <div className="navbar-list">
         <ul>
-          <li className="navitem">Events</li>
-          <li className="navitem">Hosts</li>
-          <li className="navitem">Discussion</li>
+          <Link to="/add">
+            <li className="navitem">Events</li>
+          </Link>
+          <Link to='/hosts'>
+            <li className="navitem">Hosts</li>
+          </Link>
+          <Link to="/discussion">
+            <li className="navitem">Discussion</li>
+          </Link>
         </ul>
       </div>
       <div className="navbar-last">
-        <img className="navbar-profile" src="/default.jpg" />
+        <Link to="/profile">
+          <img className="navbar-profile" src="/default.jpg" />
+        </Link>
       </div>
     </div>
   );

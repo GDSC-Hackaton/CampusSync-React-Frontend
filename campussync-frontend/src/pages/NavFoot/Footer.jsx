@@ -3,7 +3,7 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-flex">
         <div>
-          <img className="footer-logo" src="logocampus.png" />
+          <img className="footer-logo" src="/logocampus.png" />
         </div>
         <div>
           <i class="fa-brands fa-facebook-f"></i>

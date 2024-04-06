@@ -21,8 +21,12 @@ body {
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
-button{
+button , i{
   cursor: pointer;
+}
+i:hover{
+  color: red;
 }
 

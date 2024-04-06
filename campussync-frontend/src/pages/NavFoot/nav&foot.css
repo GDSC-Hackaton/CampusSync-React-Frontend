@@ -34,7 +34,7 @@
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 10px;
+  margin-right: 20px;
 }
 .footer-flex {
   display: flex;
