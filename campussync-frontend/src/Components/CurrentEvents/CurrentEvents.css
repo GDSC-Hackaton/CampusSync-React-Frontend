@@ -66,3 +66,72 @@
   .add-event-button:active {
     transform: scale(0.90);
   }
+  
+  .event_card {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #ccc;
+    padding: 16px;
+    margin-bottom: 16px;
+    margin-top: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    width: 60%;
+    gap: 20px;
+  }
+
+  .event_card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+  
+  .event_card img {
+    flex: 0 0 120px; /* fixed width for image */
+    height: auto;
+    margin-right: 20px;
+    border-radius: 4px;
+  }
+  
+  .event_detail {
+    flex: 1; /* takes up remaining space */
+  }
+  
+  h3 {
+    color: #333;
+    font-size: 18px;
+    margin-top: 0;
+  }
+  
+  .event_card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 4px 0;
+  }
+  
+  .voting {
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+    gap: 10px;
+  }
+  
+  
+  .voting button {
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .voting button:hover {
+    background-color: #e0e0e0; 
+    transform: scale(1.05);
+  }
+  .voting button:active {
+    background-color: #e0e0e0; 
+    transform: scale(0.95);
+  }
