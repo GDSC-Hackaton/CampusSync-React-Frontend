@@ -28,7 +28,6 @@ function App() {
                 <Route path="/register" element={<Signup />}></Route>
                 <Route path="/" element={<PrivateRoute />}>
                   <Route path="/" element={<Navigate to="/home"></Navigate>}></Route>
-
                   <Route path="/home" element={<Home />}></Route>
                   <Route path="/profile" element={<Profile />}></Route>
                   <Route path="/hosts" element={<HostDetailPage />}></Route>
