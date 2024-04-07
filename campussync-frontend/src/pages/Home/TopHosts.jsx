@@ -1,5 +1,5 @@
 import React from 'react' 
-import "../TopHosts/TopHosts.css"
+import "./TopHosts.css"
 const hostsData = [
     {
       name: 'GOOGLE DEVELOPERS CLUB',
@@ -22,7 +22,7 @@ const hostsData = [
   const EventHostCard = ({ name, eventsCount, imageUrl }) => {
     return (
       <div className="event-host-card">
-        <img src={imageUrl} alt={name} />
+        <img src="cod.jpg" alt={name} />
         <div className="host-info">
           <h3>{name}</h3>
           <p>posted: {eventsCount} events</p>
@@ -35,7 +35,7 @@ const TopHosts = () => {
 
     return (
         <section className="top-event-hosts">
-          <h2>Top Event Hosts</h2> <hr />
+          <h2>Top Hosts</h2> 
           <div className="hosts-container">
             {hostsData.map((host, index) => (
               <EventHostCard key={index} {...host} />

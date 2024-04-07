@@ -57,7 +57,7 @@ const CurrentEvents = () => {
       )}
       <div className="current-events">
         <h2>Current Events</h2>
-        <div className="search-section">
+        <div  className="search-section">
           <input
             type="text"
             placeholder="Search for events..."
@@ -66,7 +66,7 @@ const CurrentEvents = () => {
           />
           <button onClick={handleSearch}>search</button>
         </div>
-        <div className="filters">
+        <div  className="filters">
           <button onClick={() => handleFilter("recent")}>recent</button>
           <button onClick={() => handleFilter("old")}>old</button>
           <button onClick={() => handleFilter("upvote")}>upvote</button>

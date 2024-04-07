@@ -9,6 +9,8 @@ const eventsData = [
     { title: 'GDSC HACKATHON EVENT', time: 'TODAY 9:00 PM', location: 'block 47', postedBy: 'posted by gdsc club', imageSrc: 'present.png' },
     { title: 'GDSC HACKATHON EVENT', time: 'TODAY 9:00 PM', location: 'block 47', postedBy: 'posted by gdsc club', imageSrc: 'present.png' },
     { title: 'GDSC HACKATHON EVENT', time: 'TODAY 9:00 PM', location: 'block 47', postedBy: 'posted by gdsc club', imageSrc: 'present.png' },
+    { title: 'GDSC HACKATHON EVENT', time: 'TODAY 9:00 PM', location: 'block 47', postedBy: 'posted by gdsc club', imageSrc: 'present.png' },
+    { title: 'GDSC HACKATHON EVENT', time: 'TODAY 9:00 PM', location: 'block 47', postedBy: 'posted by gdsc club', imageSrc: 'present.png' },
     // ... other events
   ];
   

@@ -1,7 +1,7 @@
 import React from "react";
 import HostDetailCard from "./HostDetailCard";
 import "./HostDetail.css";
-
+import HostOverlay from "./HostOverlay";
 const HostDetailPage = () => {
   return (
     <div className="host-detail-page">

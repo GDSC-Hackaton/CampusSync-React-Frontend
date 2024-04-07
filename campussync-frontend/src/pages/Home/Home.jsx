@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./home.css";
 import TopEvents from "./TopEvents";
+import TopHosts from "./TopHosts";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
         </button>
       </div>
       <TopEvents />
+      <TopHosts />
     </div>
   );
 };
