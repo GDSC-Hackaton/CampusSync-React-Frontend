@@ -27,6 +27,7 @@ const Signin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("sign in in in")
     if (validateForm()) {
       loginUser(formdata.email.trim(), formdata.password.trim());
     } else {

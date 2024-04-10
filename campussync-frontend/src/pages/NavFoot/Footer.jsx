@@ -6,9 +6,9 @@ const Footer = () => {
           <img className="footer-logo" src="/logocampus.png" />
         </div>
         <div>
-          <i class="fa-brands fa-facebook-f"></i>
-          <i class="fa-brands fa-github"></i>
-          <i class="fa-brands fa-linkedin"></i>
+          <i className="fa-brands fa-facebook-f"></i>
+          <i className="fa-brands fa-github"></i>
+          <i className="fa-brands fa-linkedin"></i>
         </div>
       </div>
     </div>

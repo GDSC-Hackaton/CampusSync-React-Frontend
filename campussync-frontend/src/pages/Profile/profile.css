@@ -12,20 +12,31 @@
   object-fit: cover;
   filter: blur(3px);
 }
-.banner-card-for {
+.banner-card-for ,.edit-pic {
   position: absolute;
   left: 45%;
   top: 20%;
   border-radius: 50%;
   overflow: hidden;
 }
-.banner-img {
+.edit-pic {
+  position: relative;
+  left: 55%;
+  top: 20%;
+  background-color: none;
+  border: none;
+  z-index: 4;
+  color: black;
+  font-size: 1.9rem;
+}
+.banner-img{
   width: 200px;
   height: 200px;
   border-radius: 50%;
   transition: transform 0.3s ease-in;
   object-fit: cover;
 }
+
 .banner-img:hover {
   transform: scale(1.1);
   cursor: pointer;

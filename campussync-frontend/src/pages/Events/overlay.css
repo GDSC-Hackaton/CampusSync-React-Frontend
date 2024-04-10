@@ -78,6 +78,8 @@ textarea.event-desc {
   border: none;
   padding: 10px;
   border-radius: 10px;
+  border: 1px solid;
+
 }
 
 textarea.event-desc {
@@ -85,16 +87,9 @@ textarea.event-desc {
   height: 200px;
 }
 
-input:hover,
-textarea:hover {
-  cursor: pointer;
-}
 
-input.event-input:focus,
-textarea.event-desc:focus {
-  border-bottom: 1px solid red;
-  border: 1px solid;
-}
+
+
 .create-event-btn {
   padding: 10px;
   margin-bottom: 10px;

@@ -1,15 +1,51 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { useState } from "react";
+import AuthContext from "../../context/AuthContext";
+import axios from "axios";
+import Endpoint from "../../api";
 const HostOverlay = ({ showOverlay, setshowOverlay }) => {
-  const handleChange = (e) => {
+  const { user } = useContext(AuthContext);
+  const [hostData, setHostData] = useState({
+    hostname: "",
+    description: "",
+    user_id: user.user_id,
+    account_pic: null,
+  });
+  const [hostPoster, setHostPoster] = useState();
+  const handleImage = (e) => {
     const poster_overlay = document.querySelector(".overlay-poster");
-    poster_overlay.style.backgroundImage = `url(${URL.createObjectURL(
-      e.target.files[0]
-    )})`;
+    const file = e.target.files[0];
+    if (file) {
+      const fileUrl = URL.createObjectURL(file);
+      poster_overlay.style.backgroundImage = `url(${fileUrl})`;
+    }
+    setHostPoster(file);
+    // setHostData(prevState => ({ ...prevState, account_pic: file }));
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setHostData({ ...hostData, [name]: value });
   };
   document.body.style.overflow = "hidden"; // stop  backgroud scrolling when modal open
-  const handleSubmit = () => {
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(hostPoster)
+    const formData = new FormData();
+    formData.append("hostname", hostData.hostname);
+    formData.append("description", hostData.description);
+    formData.append("user_id", user.user_id);
+    formData.append("account_pic", hostPoster);
+    console.log(formData);
+    try {
+      const response = await axios.post(`${Endpoint()}user/hosts/`, formData);
+      console.log(response);
+    } catch (e) {
+      console.log("error:" , e);
+    }
+    // axios
+    //   .post(`${Endpoint()}user/hosts/`, formData)
+    //   .then((res) => console.log(res))
+    //   .catch((e) => console.log(e));
   };
   return (
     <>
@@ -20,10 +56,14 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
               document.body.style.overflowY = "scroll";
               setshowOverlay(!showOverlay);
             }}
-            class="fa-solid fa-x"
+            className="fa-solid fa-x"
           ></i>
-          <h3 style={{textAlign:"center"}}>Be a Host</h3>
-          <form className="event-form" encType="multipart/form-data">
+          <h3 style={{ textAlign: "center" }}>Be a Host</h3>
+          <form
+            onSubmit={handleSubmit}
+            className="event-form"
+            encType="multipart/form-data"
+          >
             <div className="overlay-poster">
               <div className="upload-icon">
                 <label htmlFor="poster">
@@ -35,7 +75,7 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
               </div>
 
               <input
-                onChange={(e) => handleChange(e)}
+                onChange={handleImage}
                 type="file"
                 id="poster"
                 name="account_pic"
@@ -46,6 +86,7 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
             <div className="event-inputs">
               <i className="fa fa-pen"></i>
               <input
+                onChange={handleChange}
                 type="text"
                 className="event-input"
                 name="hostname"
@@ -55,13 +96,16 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
 
             <div className="event-inputs">
               <textarea
+                onChange={handleChange}
                 type="text"
                 className="event-desc"
                 name="description"
                 placeholder="description ..."
               ></textarea>
             </div>
-            <button className="create-event-btn">Create Event</button>
+            <button type="submit" className="create-event-btn">
+              Create Event
+            </button>
           </form>
         </div>
       </div>

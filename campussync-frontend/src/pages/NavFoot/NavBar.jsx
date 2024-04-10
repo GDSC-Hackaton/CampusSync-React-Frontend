@@ -1,9 +1,21 @@
-import { useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import "./nav&foot.css";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import axios from "axios";
+import Endpoint from "../../api";
 const NavBar = () => {
   const { user , logoutUser} = useContext(AuthContext);
+  const [profile, setprofile] = useState([])
+  const fetchProfileDetail = async () => {
+    const response = await axios.get(
+      `${Endpoint()}user/users/${user.user_id}/`
+    );
+    setprofile(response.data);
+  };
+  useEffect(() => {
+    fetchProfileDetail();
+  }, []);
   return (
     <div className="navbar">
       <div className="navbar-logo">
@@ -39,7 +51,7 @@ const NavBar = () => {
       </div>
       <div className="navbar-last">
         <Link to="/profile">
-          <img className="navbar-profile" src="/default.jpg" />
+          <img className="navbar-profile" src={profile.profile_pic ? profile.profile_pic : "default.jpg"} />
         </Link>
       </div>
     </div>

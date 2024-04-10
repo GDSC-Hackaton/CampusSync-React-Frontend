@@ -3,14 +3,14 @@ import "./overlay.css";
 import axios from "axios";
 import Endpoint from "../../api";
 import { useState } from "react";
-const AddEventOverlay = ({ showOverlay, setshowOverlay }) => {
+const AddEventOverlay = ({ showOverlay, setshowOverlay,fetchEvents }) => {
   const [eventData, setData] = useState({
-    host: 2,
-    event_date: "",
-    poster: "",
-    name: "",
-    description: "",
-    address: "string",
+    host_id: 1,
+    name: "string",
+    description: "string",
+    event_date: "2024-04-09T12:43:02.725Z",
+    poster: "string",
+    address:"",
   });
   const handleImage = (e) => {
     const poster_overlay = document.querySelector(".overlay-poster");
@@ -30,19 +30,21 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay }) => {
   const handleSubmit = async (e) => {
     const formData = new FormData();
     e.preventDefault();
-    formData.append("host", eventData.host);
+    formData.append("host_id", eventData.host_id);
     formData.append("event_date", eventData.event_date);
     formData.append("poster", eventData.poster);
     formData.append("name", eventData.name);
     formData.append("description", eventData.description);
     formData.append("address", eventData.address);
+
     try {
       const response = await axios.post(`${Endpoint()}event/events/`, formData);
-      console.log(response)
-    }
+      fetchEvents();
 
-    catch (e) {
-      console.log(e)
+      setshowOverlay(!showOverlay);
+      console.log(response);
+    } catch (e) {
+      console.log(e);
     }
   };
   return (
@@ -83,11 +85,12 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay }) => {
             <div className="event-inputs">
               <i className="fa fa-pen"></i>
               <input
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 type="text"
                 className="event-input"
                 name="name"
                 placeholder="your event ..."
+                required
               />
             </div>
 
@@ -95,34 +98,38 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay }) => {
               <i class="fa-solid fa-calendar-days"></i>
 
               <input
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 type="date"
                 className="event-input"
                 name="event_date"
                 placeholder="event date ..."
+                required
               />
             </div>
             <div className="event-inputs">
               <i class="fa-solid fa-location-dot"></i>
 
               <input
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 type="text"
                 className="event-input"
                 name="address"
                 placeholder="location ..."
+                required
               />
             </div>
             <div className="event-inputs">
               <textarea
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 type="text"
                 className="event-desc"
                 name="description"
                 placeholder="description ..."
               ></textarea>
             </div>
-            <button className="create-event-btn">Create Event</button>
+            <button onClick={() =>  document.body.style.overflowY = "scroll"}  type="submit" className="create-event-btn">
+              Create Event
+            </button>
           </form>
         </div>
       </div>

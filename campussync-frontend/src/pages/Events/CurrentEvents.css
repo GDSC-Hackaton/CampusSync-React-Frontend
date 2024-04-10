@@ -81,7 +81,7 @@
 
 .event_card:hover {
   cursor: pointer;
-  transform: translateY(2%);
+  transform: translateY(-2%);
 }
 
 .event_card img {
@@ -110,7 +110,6 @@ h3 {
 
 .voting {
   display: flex;
-  flex-direction: ;
   align-items: center;
   margin-top: 200px;
   gap: 10px;
