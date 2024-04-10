@@ -11,7 +11,6 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
     user_id: user.user_id,
     account_pic: null,
   });
-  const [hostPoster, setHostPoster] = useState();
   const handleImage = (e) => {
     const poster_overlay = document.querySelector(".overlay-poster");
     const file = e.target.files[0];
@@ -19,8 +18,7 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
       const fileUrl = URL.createObjectURL(file);
       poster_overlay.style.backgroundImage = `url(${fileUrl})`;
     }
-    setHostPoster(file);
-    // setHostData(prevState => ({ ...prevState, account_pic: file }));
+    setHostData({ ...hostData, account_pic: file });
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,16 +27,18 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
   document.body.style.overflow = "hidden"; // stop  backgroud scrolling when modal open
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(hostPoster)
+    console.log(hostData.account_pic)
     const formData = new FormData();
     formData.append("hostname", hostData.hostname);
     formData.append("description", hostData.description);
     formData.append("user_id", user.user_id);
-    formData.append("account_pic", hostPoster);
+    formData.append("account_pic", hostData.account_pic);
     console.log(formData);
+
     try {
       const response = await axios.post(`${Endpoint()}user/hosts/`, formData);
       console.log(response);
+      setshowOverlay(!showOverlay);
     } catch (e) {
       console.log("error:" , e);
     }
@@ -91,6 +91,8 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
                 className="event-input"
                 name="hostname"
                 placeholder="host name ..."
+                required
+
               />
             </div>
 
@@ -100,7 +102,9 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
                 type="text"
                 className="event-desc"
                 name="description"
-                placeholder="description ..."
+                placeholder="tell us a bit about this host ..."
+                required
+
               ></textarea>
             </div>
             <button type="submit" className="create-event-btn">

@@ -50,6 +50,10 @@
   display: flex;  
   height: 5%; 
 }
+.q-head:hover {
+    color:#646363;
+    cursor: pointer;
+}
 .q-content {
     display: flex;
     flex-direction: column;

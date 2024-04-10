@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   const loginUser = async (email, password) => {
     try {
       const { data } = await axios.post(
-        `${endpoint}/api/token/`,
+        `${endpoint}api/token/`,
         {
           email: email,
           password: password,

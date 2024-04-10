@@ -112,7 +112,7 @@ const CurrentEvents = () => {
               <div className="event_detail">
                 <Link to="/event-detail/1/">
                   <h3>{event.name}</h3>
-                  <p>Place: {event.place}</p>
+                  <p>Place: {event.address}</p>
                   <p>Time: {event.date_posted}</p>
                   <p>Hosted by: {event.host}</p>
                 </Link>
@@ -120,7 +120,7 @@ const CurrentEvents = () => {
 
               <div className="voting">
                 <button>
-                  <i className="fa-solid fa-thumbs-up"></i> {event.upvotes}
+                  <i  className="fa-solid fa-thumbs-up"></i> {event.upvotes}
                 </button>
                 <button>
                   <i className="fa-solid fa-thumbs-down"></i> {event.downvotes}

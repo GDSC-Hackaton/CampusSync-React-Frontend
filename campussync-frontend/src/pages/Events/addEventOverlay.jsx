@@ -8,7 +8,7 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay,fetchEvents }) => {
     host_id: 1,
     name: "string",
     description: "string",
-    event_date: "2024-04-09T12:43:02.725Z",
+    event_date: "",
     poster: "string",
     address:"",
   });
@@ -36,7 +36,8 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay,fetchEvents }) => {
     formData.append("name", eventData.name);
     formData.append("description", eventData.description);
     formData.append("address", eventData.address);
-
+    console.log(formData);
+    console.log(formData.poster)
     try {
       const response = await axios.post(`${Endpoint()}event/events/`, formData);
       fetchEvents();

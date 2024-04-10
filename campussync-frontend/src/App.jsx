@@ -15,6 +15,7 @@ import Home from "./pages/Home/Home";
 import CurrentEvents from "./pages/Events/CurrentEvents";
 import PrivateRoute from "./utils/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
+import Answer from "./pages/Discussion/Answer";
 function App() {
   return (
     <>
@@ -34,6 +35,7 @@ function App() {
                   <Route path="/hosts" element={<HostDetailPage />}></Route>
                   <Route path="/events" element={<CurrentEvents />}></Route>
                   <Route path="/discussion" element={<Discussion />}></Route>
+                  <Route path="/answers/1" element={<Answer/>}></Route>
                   <Route
                     path="/event-detail/1/"
                     element={<EventDetails />}
