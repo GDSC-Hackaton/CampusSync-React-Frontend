@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "./nav&foot.css";
+import "./nav&foot.css"
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 const NavBar = () => {
@@ -13,6 +13,10 @@ const NavBar = () => {
       </div>
       <div className="navbar-list">
         <ul>
+
+        <Link to="/home">
+            <li className="navitem">Home</li>
+          </Link>
           <Link to="/events">
             <li className="navitem">Events</li>
           </Link>

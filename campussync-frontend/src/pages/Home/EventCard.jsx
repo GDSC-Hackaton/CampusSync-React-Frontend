@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import "./EventCard.css";
 import { Link } from "react-router-dom";
@@ -17,3 +18,30 @@ const EventCard = ({ title, time, location, postedBy, imageSrc, id }) => {
 };
 
 export default EventCard;
+=======
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './EventCard.css';
+
+const EventCard = ({ id, imageSrc, title, description, time }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/event-detail/${id}`);
+  };
+
+  return (
+    <div className="event-card" onClick={handleClick}>
+      <img src={imageSrc} alt={title} />
+      <div className="event-info">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <p> Date : {time} </p>
+      </div>
+    </div>
+  );
+};
+
+
+export default EventCard;
+>>>>>>> main

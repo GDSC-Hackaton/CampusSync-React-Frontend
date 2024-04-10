@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 import "./App.css";
 import Signup from "./pages/Authentication/SignUp";
 import Signin from "./pages/Authentication/SignIn";
@@ -10,13 +14,14 @@ import {
 import NavBar from "./pages/NavFoot/NavBar";
 import Profile from "./pages/Profile/Profile";
 import Footer from "./pages/NavFoot/Footer";
-import AddEventOverlay from "./pages/Events/addEventOverlay";
+
+
 import Discussion from "./pages/Discussion/Discussion";
-import HostDetailCard from "./pages/HostsDetail/HostDetailCard";
+
 import HostDetailPage from "./pages/HostsDetail/HostDetailPage";
-import EventDetails from "./pages/Events/EventDetails";
+import EventDetails from "./utils/Events/EventDetails"
 import Home from "./pages/Home/Home";
-import CurrentEvents from "./pages/Events/CurrentEvents";
+import CurrentEvents from "./utils/Events/CurrentEvents"
 import PrivateRoute from "./utils/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
 import HostsPage from "./pages/HostsPage/HostsPage";
@@ -58,11 +63,15 @@ function App() {
                   <Route path="/hostdetailpage/:id1" element={<HostDetailPage />}></Route>
                   <Route path="/events" element={<CurrentEvents />}></Route>
                   <Route path="/discussion" element={<Discussion />}></Route>
+<<<<<<< HEAD
                   <Route
                     path="/eventdetailpage/:id/"
                     element={<EventDetails />}
                   ></Route>
                   <Route path="/hostspage" element={<HostsPage />}></Route>
+=======
+                  <Route path="/event-detail/:id" element={<EventDetails />}></Route>
+>>>>>>> main
                   <Route path="*" element={<Home/>}></Route>
                 </Route>
               </Routes>
