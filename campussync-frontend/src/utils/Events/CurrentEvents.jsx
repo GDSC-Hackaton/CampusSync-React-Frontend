@@ -80,32 +80,31 @@ const CurrentEvents = () => {
         </button>
 
         {eventData.map((event, index) => (
-          <div key={index} className="event_card">
-            <img
-              src={event.image}
-              style={{ width: "400px" }}
-              alt={event.title}
-            />
-  
+          <Link to={`/eventdetailpage/${event.id}`}>
+            <div key={index} className="event_card">
+              <img
+                src={event.image}
+                style={{ width: "400px" }}
+                alt={event.title}
+              />
+
               <div className="event_detail">
-              <Link to="/event-detail/1/">
                 <h3>{event.title}</h3>
                 <p>Place: {event.place}</p>
                 <p>Time: {event.time}</p>
                 <p>Hosted by: {event.host}</p>
-                </Link>
               </div>
-          
 
-            <div className="voting">
-              <button>
-                <i class="fa-solid fa-thumbs-up"></i> {event.votes.upvote}
-              </button>
-              <button>
-                <i class="fa-solid fa-thumbs-down"></i> {event.votes.downvote}
-              </button>
+              <div className="voting">
+                <button>
+                  <i class="fa-solid fa-thumbs-up"></i> {event.votes.upvote}
+                </button>
+                <button>
+                  <i class="fa-solid fa-thumbs-down"></i> {event.votes.downvote}
+                </button>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>
