@@ -1,8 +1,12 @@
-import { useState } from "react";
 import "./App.css";
 import Signup from "./pages/Authentication/SignUp";
 import Signin from "./pages/Authentication/SignIn";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import NavBar from "./pages/NavFoot/NavBar";
 import Profile from "./pages/Profile/Profile";
 import Footer from "./pages/NavFoot/Footer";
@@ -15,9 +19,30 @@ import Home from "./pages/Home/Home";
 import CurrentEvents from "./pages/Events/CurrentEvents";
 import PrivateRoute from "./utils/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
+import HostsPage from "./pages/HostsPage/HostsPage";
+// import Hosts from "./pages/HostsPage/Hosts";
+// import CardContainer from "./pages/HostsPage/CardContainer";
 function App() {
   return (
     <>
+      {/* <HostDetailPage />
+      <HostsPage /> */}
+      {/* <CurrentEvents /> */}
+
+      {/* <Router>
+        {" "}
+        <Routes>
+          {/* <Route path="/currentevent" element={<CurrentEvents />}></Route> 
+          <Route path="/home" element={<Home />}></Route>
+          <Route path="/hostspage" element={<HostsPage />}></Route>
+          <Route
+            path="/hostdetailpage/:id1"
+            element={<HostDetailPage />}
+          ></Route>
+          <Route path="/eventdetailpage/:id" element={<EventDetails />}></Route>
+        </Routes>
+      </Router> */}
+
       <Router>
         <AuthProvider>
           <div className="wrapper">
@@ -30,13 +55,14 @@ function App() {
                   <Route path="/" element={<Navigate to="/home"></Navigate>}></Route>
                   <Route path="/home" element={<Home />}></Route>
                   <Route path="/profile" element={<Profile />}></Route>
-                  <Route path="/hosts" element={<HostDetailPage />}></Route>
+                  <Route path="/hostdetailpage/:id1" element={<HostDetailPage />}></Route>
                   <Route path="/events" element={<CurrentEvents />}></Route>
                   <Route path="/discussion" element={<Discussion />}></Route>
                   <Route
-                    path="/event-detail/1/"
+                    path="/eventdetailpage/:id/"
                     element={<EventDetails />}
                   ></Route>
+                  <Route path="/hostspage" element={<HostsPage />}></Route>
                   <Route path="*" element={<Home/>}></Route>
                 </Route>
               </Routes>
