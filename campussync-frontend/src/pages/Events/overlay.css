@@ -79,7 +79,6 @@ textarea.event-desc {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid;
-
 }
 
 textarea.event-desc {
@@ -87,14 +86,11 @@ textarea.event-desc {
   height: 200px;
 }
 
-
-
-
 .create-event-btn {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
-  width: 30%;
+  width: 20%;
   border: none;
   color: white;
   background-color: rgb(0, 0, 0);

@@ -4,33 +4,6 @@ import AddEventOverlay from "./addEventOverlay";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Endpoint from "../../api";
-const eventData = [
-  {
-    title: "Women in Tech",
-    image: "cod.jpg",
-    place: "Virtual",
-    time: "11:00 LT",
-    host: "GDSC",
-    votes: { upvote: 120, downvote: 3 },
-  },
-  {
-    title: "CISCO Registration",
-    image: "cod.jpg",
-    place: "Virtual",
-    time: "11:00 LT",
-    host: "CISCO Astu",
-    votes: { upvote: 80, downvote: 5 },
-  },
-  {
-    title: "ALX Campus Event",
-    image: "cod.jpg",
-    place: "Virtual",
-    time: "11:00 LT",
-    host: "ALX",
-    votes: { upvote: 250, downvote: 7 },
-  },
-  // ... additional events
-];
 
 const CurrentEvents = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -51,6 +24,7 @@ const CurrentEvents = () => {
     console.log("Filtering by:", filter);
     // Implement filter functionality
   };
+  console.log(events)
   const fetchEvents = async () => {
     try {
       const response = await axios.get(`${Endpoint()}event/events`);
@@ -79,7 +53,7 @@ const CurrentEvents = () => {
           <input
             type="text"
             placeholder="Search for events..."
-            value={searchTerm}
+            // value={searchTerm}
             onChange={handleSearchChange}
           />
           <button onClick={handleSearch}>search</button>
@@ -102,19 +76,19 @@ const CurrentEvents = () => {
         ) : (
           events.length > 0 ?
           events.map((event, index) => (
-            <div key={event.id} className="event_card">
+            <div key={index} className="event_card">
               <img
                 src={event.poster}
                 style={{ width: "400px", height: "100%" }}
-                alt={event.title}
+                alt={event.name}
               />
 
               <div className="event_detail">
                 <Link to="/event-detail/1/">
                   <h3>{event.name}</h3>
                   <p>Place: {event.address}</p>
-                  <p>Time: {event.date_posted}</p>
-                  <p>Hosted by: {event.host}</p>
+                  <p>Time: {event.event_date}</p>
+                  <p>Hosted by: {event.host ? event.host.hostname : ""}</p>
                 </Link>
               </div>
 

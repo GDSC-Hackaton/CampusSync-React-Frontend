@@ -35,7 +35,7 @@ function App() {
                   <Route path="/hosts" element={<HostDetailPage />}></Route>
                   <Route path="/events" element={<CurrentEvents />}></Route>
                   <Route path="/discussion" element={<Discussion />}></Route>
-                  <Route path="/answers/1" element={<Answer/>}></Route>
+                  <Route path="/answers/:question_id/" element={<Answer/>}></Route>
                   <Route
                     path="/event-detail/1/"
                     element={<EventDetails />}

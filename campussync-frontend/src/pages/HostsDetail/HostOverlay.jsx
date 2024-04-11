@@ -5,6 +5,8 @@ import axios from "axios";
 import Endpoint from "../../api";
 const HostOverlay = ({ showOverlay, setshowOverlay }) => {
   const { user } = useContext(AuthContext);
+  const [isuploading, setUploading] = useState(false);
+
   const [hostData, setHostData] = useState({
     hostname: "",
     description: "",
@@ -27,7 +29,8 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
   document.body.style.overflow = "hidden"; // stop  backgroud scrolling when modal open
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(hostData.account_pic)
+    setUploading(true);
+
     const formData = new FormData();
     formData.append("hostname", hostData.hostname);
     formData.append("description", hostData.description);
@@ -40,7 +43,7 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
       console.log(response);
       setshowOverlay(!showOverlay);
     } catch (e) {
-      console.log("error:" , e);
+      console.log("error:", e);
     }
     // axios
     //   .post(`${Endpoint()}user/hosts/`, formData)
@@ -92,7 +95,6 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
                 name="hostname"
                 placeholder="host name ..."
                 required
-
               />
             </div>
 
@@ -104,11 +106,17 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
                 name="description"
                 placeholder="tell us a bit about this host ..."
                 required
-
               ></textarea>
             </div>
             <button type="submit" className="create-event-btn">
-              Create Event
+              {isuploading ? (
+                <span>
+                  {" "}
+                  <img style={{ width: "70px" }} src="loading.gif" />
+                </span>
+              ) : (
+                "Create Host"
+              )}
             </button>
           </form>
         </div>
