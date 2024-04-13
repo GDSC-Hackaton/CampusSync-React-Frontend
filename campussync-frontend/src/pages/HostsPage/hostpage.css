@@ -1,0 +1,18 @@
+.hostpage-container {
+    padding: 20px; /* Adjust padding as needed */
+  }
+  
+  .hostspage-hosts {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    justify-content: space-between; /* Space out the cards */
+    gap: 20px; /* Spacing between cards */
+  }
+  
+  /* Adjustments for smaller screens */
+  @media (max-width: 600px) {
+    .hostspage-hosts {
+      justify-content: center; /* Center the cards on smaller screens */
+    }
+  }
+  

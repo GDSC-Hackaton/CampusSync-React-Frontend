@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import Endpoint from "../../api";
 import AuthContext from "../../context/AuthContext";
-
+import timeFormater from "../../utils/timeformater";
 const DeleteAnswer= ({
     fetchAnswers,
     deleteOverlay,
@@ -175,7 +175,7 @@ const Answer = () => {
             <span>
               {question.author.name}
               <br />
-              {question.created_date}
+              {timeFormater(question.created_date)}
             </span>
           </div>
         )}
@@ -187,7 +187,7 @@ const Answer = () => {
             onClick={() => setAnswerOverlay(!answerOverlay)}
             className="ans-btn"
           >
-            <i className="fas fa-pen"></i> <Link to="/answers/1">Answer</Link>
+            <i className="fas fa-pen"></i> answer
           </button>
         </div>
       </div>
@@ -251,7 +251,6 @@ const Answer = () => {
                 <div className="answer">{answer.answer}</div>
 
                 <button className="edit-btns" style={{ marginLeft: "auto" }}>
-                  <i className="fas fa-share"></i>
                   {user.user_id === answer.user.id ? (
                     <>
                       <i onClick={()=>{setAnswerToBeEdited(answer), setEditOverlay(!editOverlay)}} className="fa-regular fa-pen-to-square"></i>

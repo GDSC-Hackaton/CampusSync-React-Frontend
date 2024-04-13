@@ -10,8 +10,8 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
   const [hostData, setHostData] = useState({
     hostname: "",
     description: "",
-    user_id: user.user_id,
     account_pic: null,
+    admins:[user.user_id]
   });
   const handleImage = (e) => {
     const poster_overlay = document.querySelector(".overlay-poster");
@@ -26,7 +26,6 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
     const { name, value } = e.target;
     setHostData({ ...hostData, [name]: value });
   };
-  document.body.style.overflow = "hidden"; // stop  backgroud scrolling when modal open
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUploading(true);
@@ -34,7 +33,7 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
     const formData = new FormData();
     formData.append("hostname", hostData.hostname);
     formData.append("description", hostData.description);
-    formData.append("user_id", user.user_id);
+    formData.append("admins", hostData.admins);
     formData.append("account_pic", hostData.account_pic);
     console.log(formData);
 
@@ -45,10 +44,7 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
     } catch (e) {
       console.log("error:", e);
     }
-    // axios
-    //   .post(`${Endpoint()}user/hosts/`, formData)
-    //   .then((res) => console.log(res))
-    //   .catch((e) => console.log(e));
+    
   };
   return (
     <>
@@ -108,16 +104,15 @@ const HostOverlay = ({ showOverlay, setshowOverlay }) => {
                 required
               ></textarea>
             </div>
-            <button type="submit" className="create-event-btn">
-              {isuploading ? (
-                <span>
-                  {" "}
-                  <img style={{ width: "70px" }} src="loading.gif" />
-                </span>
-              ) : (
-                "Create Host"
-              )}
-            </button>
+            {isuploading ? (
+              <span>
+                <img style={{ width: "70px" }} src="loading.gif" />
+              </span>
+            ) : (
+              <button type="submit" className="create-event-btn">
+                Create Host
+              </button>
+            )}
           </form>
         </div>
       </div>

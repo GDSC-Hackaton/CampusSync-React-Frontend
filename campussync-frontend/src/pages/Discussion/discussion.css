@@ -11,6 +11,7 @@
     
 }
 
+
 .grid-column {
     margin:20px;
     height: auto;
@@ -30,10 +31,22 @@
     border: none;
     border-radius: 25px;
 }
+@media screen and (max-width: 600px) {
+    .left {
+      display: none; /* Change to one column for small screens */
+    }
+    .discussion-grid {
+      grid-template-columns: 1fr;
 
+    }
+    .search-input {
+        width: 70%;
+    }
+  }
 .question-card {
     width: 100%;
     margin-top:10px;
+    margin-bottom: 10px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -82,4 +95,11 @@
     width: 100%;
     overflow: hidden;
     text-decoration: underline;
+}
+.hidden {
+    opacity: 0;
+    
+}
+.show {
+    opacity: 1;
 }

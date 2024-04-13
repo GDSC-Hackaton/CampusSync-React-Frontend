@@ -20,14 +20,17 @@
   overflow: hidden;
 }
 .edit-pic {
-  position: relative;
-  left: 55%;
+  position: absolute;
+  left: 45%;
   top: 20%;
   background-color: none;
   border: none;
   z-index: 4;
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 1.9rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1px);
+  padding:80px;
 }
 .banner-img{
   width: 200px;
@@ -43,7 +46,7 @@
 }
 .profile-name {
   width: 100%;
-  margin-top: 100px;
+  margin-top: 150px;
   margin-left: 18px;
   font-size: 2rem;
   text-align: center;
@@ -67,6 +70,10 @@
   padding: 10px;
   list-style: none;
   box-shadow: 1px -1px 10px rgb(231, 231, 231);
+  font-size: 20px;
+}
+.choices-list li {
+  margin: 10px;
 }
 li.choice:hover {
   background-color: #f2f0f0;
@@ -109,12 +116,14 @@ li.choice:hover {
   margin-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  
+  
 }
 .following-box {
+  
   text-align: center;
   font-size: 1.4rem;
-  margin: 10px;
+  margin: 30px;
   transition: all 0.3s ease-in-out;
 
 }

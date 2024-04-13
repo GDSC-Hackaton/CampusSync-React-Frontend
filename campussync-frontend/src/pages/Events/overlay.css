@@ -98,3 +98,18 @@ textarea.event-desc {
 .create-event-btn:hover {
   background-color: rgb(60, 60, 60);
 }
+.host-choices {
+  display: inline;
+  list-style: none;
+}
+.host-choices li {
+  display: inline;
+  background-color:rgb(231, 229, 229);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.host-choices li:hover {
+  background-color: #ac95e6;
+}

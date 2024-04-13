@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./overlay.css";
 import axios from "axios";
 import Endpoint from "../../api";
 import { useState } from "react";
-const AddEventOverlay = ({ showOverlay, setshowOverlay,fetchEvents }) => {
+import AuthContext from "../../context/AuthContext";
+import { Link } from "react-router-dom";
+import ErrorCard from "../Authentication/ErrorCard";
+const AddEventOverlay = ({ showOverlay, setshowOverlay, fetchEvents }) => {
+  const { user } = useContext(AuthContext);
+  const [isuploading, setUploading] = useState(false);
+
   const [eventData, setData] = useState({
-    host_id: 1,
-    name: "string",
-    description: "string",
+    host_id: "",
+    name: "",
+    description: "",
     event_date: "",
-    poster: "string",
-    address:"",
+    poster: "",
+    address: "",
   });
+  const [error, setError] = useState("");
+  const [showError, setShowError] = useState(false);
   const handleImage = (e) => {
     const poster_overlay = document.querySelector(".overlay-poster");
     const file = e.target.files[0];
@@ -25,29 +33,51 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay,fetchEvents }) => {
     const { name, value } = e.target;
     setData({ ...eventData, [name]: value });
   };
-  document.body.style.overflow = "hidden"; // stop  backgroud scrolling when modal open
-
+  const validateForm = () => {
+    if (eventData.host_id == "") {
+      setError("Choose as which host you want to create the event!");
+      return false;
+    }
+    return true;
+  };
+  const [hostsUnderUser, setHostsUnderUser] = useState([]);
+  const fetchHostsUnderUser = async () => {
+    const response = await axios.post(`${Endpoint()}user/hosts_under_user/`, {
+      user_id: user.user_id,
+    });
+    setHostsUnderUser(response.data);
+  };
   const handleSubmit = async (e) => {
-    const formData = new FormData();
     e.preventDefault();
-    formData.append("host_id", eventData.host_id);
-    formData.append("event_date", eventData.event_date);
-    formData.append("poster", eventData.poster);
-    formData.append("name", eventData.name);
-    formData.append("description", eventData.description);
-    formData.append("address", eventData.address);
-    console.log(formData);
-    console.log(formData.poster)
-    try {
-      const response = await axios.post(`${Endpoint()}event/events/`, formData);
-      fetchEvents();
-
-      setshowOverlay(!showOverlay);
-      console.log(response);
-    } catch (e) {
-      console.log(e);
+    if (validateForm()) {
+      setUploading(true);
+      const formData = new FormData();
+      formData.append("host_id", eventData.host_id);
+      formData.append("event_date", eventData.event_date);
+      eventData.poster ? formData.append("poster", eventData.poster) : "";
+      formData.append("name", eventData.name);
+      formData.append("description", eventData.description);
+      formData.append("address", eventData.address);
+      try {
+        const response = await axios.post(
+          `${Endpoint()}event/events/`,
+          formData
+        );
+        fetchEvents();
+        setshowOverlay(!showOverlay);
+        console.log(response);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      console.log(eventData.host_id);
+      setShowError(true);
     }
   };
+
+  useEffect(() => {
+    fetchHostsUnderUser();
+  }, []);
   return (
     <>
       <div className="overlay-container">
@@ -109,7 +139,6 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay,fetchEvents }) => {
             </div>
             <div className="event-inputs">
               <i class="fa-solid fa-location-dot"></i>
-
               <input
                 onChange={handleChange}
                 type="text"
@@ -119,6 +148,37 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay,fetchEvents }) => {
                 required
               />
             </div>
+            <div>
+              {showError && <ErrorCard error={error} />}
+              <div style={{ marginTop: "20px" }}>
+                <ul className="host-choices">
+                <span>As which host</span>
+
+                  {hostsUnderUser.length > 0 ? (
+                    hostsUnderUser.map((host) => (
+                      
+                        <li
+                          style={{
+                            backgroundColor:
+                              eventData.host_id === host.id ? "#ac95e6" : "",
+                          }}
+                          onClick={() =>
+                            setData({ ...eventData, host_id: host.id })
+                          }
+                        >
+                          {host.hostname}
+                        </li>
+                      
+                    ))
+                  ) : (
+                    <Link to="/hosts" style={{ color: "red" }}>
+                      You Can't create an Event if your not a host?
+                      <li style={{ color: "black" }}>Be a Host</li>{" "}
+                    </Link>
+                  )}
+                </ul>
+              </div>
+            </div>
             <div className="event-inputs">
               <textarea
                 onChange={handleChange}
@@ -126,11 +186,20 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay,fetchEvents }) => {
                 className="event-desc"
                 name="description"
                 placeholder="description ..."
+                required
               ></textarea>
             </div>
-            <button onClick={() =>  document.body.style.overflowY = "scroll"}  type="submit" className="create-event-btn">
-              Create Event
-            </button>
+            {isuploading ? (
+              <span>
+                <img style={{ width: "70px" }} src="loading.gif" />
+              </span>
+            ) : (
+              <button
+                className="create-event-btn"
+              >
+                Create Event
+              </button>
+            )}
           </form>
         </div>
       </div>

@@ -59,7 +59,7 @@ const NavBar = () => {
                 </div>
 
                 <ul style={{ padding: "10px" }}>
-                  {user &&  <Link to="/profile"><li> Your Profile </li></Link>}
+                  {user &&  <Link to={`/profile/${user.user_id}`}><li> Your Profile </li></Link>}
                   <li className="logout" onClick={logoutUser}>
                     Logout
                   </li>

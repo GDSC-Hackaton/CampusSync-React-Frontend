@@ -6,6 +6,8 @@ import Endpoint from "../../api";
 import AuthContext from "../../context/AuthContext";
 import EditQuestion from "./Edit";
 import DeleteQuestion from "./Delete";
+import timeFormater from "../../utils/timeformater";
+
 const Discussion = () => {
   const { user } = useContext(AuthContext);
   const [isQuestionOverlay, setQuestionOverlay] = useState(false);
@@ -14,11 +16,11 @@ const Discussion = () => {
   const [deleteOverlay, setdeleteOverlay] = useState(false);
   const [questionToBeDeleted, setquestionToBeDeleted] = useState("");
   const [questionTobeEdited, setQuestionToBeEdited] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [questionData, setQuestionData] = useState({
     question: "",
     author_id: user.user_id,
   });
-  const [loading, setLoading] = useState(true);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setQuestionData({ ...questionData, [name]: value });
@@ -42,20 +44,58 @@ const Discussion = () => {
       console.log(e);
     }
   };
+  const handleUpvote = async (questionID, userId) => {
+    try {
+      let form_data = new FormData();
+      form_data.append("user_id", [userId]);
+      await axios.post(`${Endpoint()}forum/${questionID}/upvote/`, form_data);
+      fetchQuestions();
+    } catch (error) {
+      console.error("Error upvoting the question:", error);
+    }
+  };
+
+  const handleDownvote = async (questionID, userId) => {
+    try {
+      let form_data = new FormData();
+      form_data.append("user_id", [userId]);
+      await axios.post(`${Endpoint()}forum/${questionID}/downvote/`, form_data);
+      fetchQuestions();
+    } catch (error) {
+      console.error("Error downvoting the question:", error);
+    }
+  };
+
+  const handleSearch = async () => {
+    const response = await axios.get(
+      `${Endpoint()}/forum/questions?search=${searchTerm}`
+    );
+    setQuestions(response.data);
+  };
   const fetchQuestions = async () => {
     const response = await axios.get(`${Endpoint()}forum/questions`);
     setQuestions(response.data);
-    console.log(response.data);
   };
+
   useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    });
+    const hiddenElements = document.querySelectorAll(".hidden");
+    hiddenElements.forEach((element) => observer.observe(element));
     fetchQuestions();
   }, []);
+
   return (
     <div className="discussion-container">
       <div className="discussion-grid">
         {editOverlay && (
-          <EditQuestion 
-           choice="edit-question"
+          <EditQuestion
+            choice="edit-question"
             editOverlay={editOverlay}
             setEditOverlay={setEditOverlay}
             questionTobeEdited={questionTobeEdited}
@@ -70,8 +110,10 @@ const Discussion = () => {
             fetchQuestions={fetchQuestions}
           />
         )}
-        <div className="grid-column" style={{ position: "sticky", top: 0 }}>
-          
+        <div
+          className="grid-column left"
+          style={{ position: "sticky", top: 0 }}
+        >
           <span>Start a discussion </span>
           <button
             onClick={() => setQuestionOverlay(!isQuestionOverlay)}
@@ -80,16 +122,29 @@ const Discussion = () => {
             <i className="fa fa-plus"></i>
           </button>
           <div>
-            <img style={{width:"100%", height:"100%" , margin:"4px"}} src="question.gif" />
+            <img
+              style={{ width: "100%", height: "100%", margin: "4px" }}
+              src="question.gif"
+            />
           </div>
         </div>
         <div className="grid-column">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="search for questions ..."
-          />
-          <button className="search-btn">Search</button>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault(), handleSearch();
+            }}
+          >
+            <input
+              type="text"
+              className="search-input"
+              placeholder="search for questions ..."
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+            <button className="search-btn">Search</button>
+          </form>
+
           <div>
             {isQuestionOverlay && (
               <div className="overlay-container">
@@ -129,18 +184,22 @@ const Discussion = () => {
               </div>
             )}
 
-            {questions &&
+            {questions.length > 0 ? (
               questions.map((question) => (
-                <div key={question.id} className="question-card">
+                <div key={question.id} className=" question-card">
                   <div className="q-head">
                     <img
-                      src={question.author.profile_pic}
+                      src={question.author?.profile_pic}
                       className="q-creator"
                     />
+
                     <span>
-                      {question.author.name}{" "}
-                      <small style={{ color: "gray" }}>asked</small>
-                      <br /> <small>{question.created_date}2</small>
+                      <Link to={`/profile/${question.author?.id}`}>
+                        {question.author?.name}{" "}
+                        <small style={{ color: "gray" }}>asked</small>
+                        <br />{" "}
+                        <small>{timeFormater(question.created_date)}</small>
+                      </Link>
                     </span>
                   </div>
 
@@ -156,8 +215,24 @@ const Discussion = () => {
                           <i className="fas fa-pen"></i> Answer
                         </Link>
                       </button>
+                      <button
+                        onClick={() => handleUpvote(question.id, user.user_id)}
+                        className="answer-btn"
+                      >
+                        <i className="fa-solid fa-circle-up"></i>
+                        {question.upvotes}
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleDownvote(question.id, user.user_id)
+                        }
+                        className="answer-btn"
+                      >
+                        <i class="fa-solid fa-circle-down"></i>
+                        {question.downvotes}
+                      </button>
                       <button className="share-btn">
-                        {user.user_id === question.author.id ? (
+                        {user.user_id === question.author?.id ? (
                           <>
                             <i
                               onClick={() => {
@@ -192,7 +267,17 @@ const Discussion = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div style={{ margin: "10px auto", textAlign: "center" }}>
+                <span style={{ fontSize: "20px" }}>
+                 No Question called  <span style={{color:"blue"}}>{searchTerm}</span> was found
+                </span>
+                <div className="answer">
+                  <img style={{ width: "60%" }} src="/nofollow.gif" />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
