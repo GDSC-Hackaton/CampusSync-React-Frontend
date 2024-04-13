@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "./TopHosts.css";
 
-const EventHostCard = ({ name, eventsCount, imageUrl }) => {
+const EventHostCard = ({ name, eventsCount, imageUrl,id }) => {
   return (
-    <div className="event-host-card">
-      <img src={imageUrl} alt={name} />
-      <div className="host-info">
-        <h3>{name}</h3>
-        <p>Posted: {eventsCount} events</p>
+    <Link to={`/hostdetailpage/${id}`}>
+      <div className="event-host-card">
+        <img src={imageUrl} alt={name} />
+        <div className="host-info">
+          <h3>{name}</h3>
+          <p>Posted: {eventsCount} events</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -35,7 +38,13 @@ const TopHosts = () => {
       <h2>Top Event Hosts</h2> <hr />
       <div className="hosts-container">
         {hostsData.map((host, index) => (
-          <EventHostCard key={index} imageUrl= {host.poster} name={host.hostname} eventsCount={host.length} />
+          <EventHostCard
+            key={index}
+            imageUrl={host.poster}
+            name={host.hostname}
+            eventsCount={host.length}
+            id={host.id}
+          />
         ))}
       </div>
       <button className="view-more">View More</button>

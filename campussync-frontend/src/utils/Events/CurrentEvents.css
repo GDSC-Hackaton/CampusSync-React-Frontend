@@ -53,17 +53,17 @@
 
 .add-event-btn {
   position: absolute;
-  right:0;
+  right: 0;
   padding: 10px;
-  margin:20px;
+  margin: 20px;
   border-radius: 50%;
-  border:none;
+  border: none;
   background-color: black;
-  color:white;
+  color: white;
 }
 .add-event-btn:hover {
   background-color: rgb(41, 41, 41);
-  border:0.5px solid;
+  border: 0.5px solid;
 }
 
 .event_card {
@@ -74,14 +74,14 @@
   margin-top: 20px;
   border: 2px solid #ccc;
   border-radius: 8px;
-  width: 60%;
+  width: 90%;
   height: 250px;
   transition: all 0.3s ease-in;
 }
 
 .event_card:hover {
   cursor: pointer;
-  transform: translateY(2%);
+  transform: translateY(-2%);
 }
 
 .event_card img {
@@ -110,10 +110,28 @@ h3 {
 
 .voting {
   display: flex;
-  flex-direction: ;
   align-items: center;
   margin-top: 200px;
   gap: 10px;
+}
+
+.voting button {
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.voting button:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+.voting button:active {
+  background-color: #e0e0e0;
+  transform: scale(0.95);
 }
 
 .voting button {

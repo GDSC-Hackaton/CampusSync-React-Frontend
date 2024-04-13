@@ -3,11 +3,9 @@ import "./search.css";
 
 function Search({ choicefunction }) {
   const [choice, setChoice] = useState("");
-  console.log(choice);
   
   const handleEvent = (e) => {
     e.preventDefault();
-    console.log(choice);
     choicefunction(choice);
   };
 

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 import "./App.css";
 import Signup from "./pages/Authentication/SignUp";
 import Signin from "./pages/Authentication/SignIn";
@@ -14,14 +10,11 @@ import {
 import NavBar from "./pages/NavFoot/NavBar";
 import Profile from "./pages/Profile/Profile";
 import Footer from "./pages/NavFoot/Footer";
-
-
 import Discussion from "./pages/Discussion/Discussion";
-
 import HostDetailPage from "./pages/HostsDetail/HostDetailPage";
-import EventDetails from "./utils/Events/EventDetails"
+import EventDetails from "./utils/Events/EventDetails/EventDetails";
 import Home from "./pages/Home/Home";
-import CurrentEvents from "./utils/Events/CurrentEvents"
+import CurrentEvents from "./utils/Events/CurrentEvents";
 import PrivateRoute from "./utils/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
 import HostsPage from "./pages/HostsPage/HostsPage";
@@ -33,20 +26,19 @@ function App() {
       {/* <HostDetailPage />
       <HostsPage /> */}
       {/* <CurrentEvents /> */}
-
-      {/* <Router>
-        {" "}
-        <Routes>
-          {/* <Route path="/currentevent" element={<CurrentEvents />}></Route> 
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/hostspage" element={<HostsPage />}></Route>
-          <Route
-            path="/hostdetailpage/:id1"
-            element={<HostDetailPage />}
-          ></Route>
-          <Route path="/eventdetailpage/:id" element={<EventDetails />}></Route>
-        </Routes>
-      </Router> */}
+      {/* <Route path="/currentevent" element={<CurrentEvents />}></Route>  */}
+        {/* <Router>
+          {" "}
+          <Routes>
+            {/* <Route path="/home" element={<Home />}></Route> 
+            <Route path="/hostspage" element={<HostsPage />}></Route>
+            <Route
+              path="/hostdetailpage/:id1"
+              element={<HostDetailPage />}
+            ></Route>
+             <Route path="/eventdetailpage/:id" element={<EventDetails />}></Route> *
+          </Routes>
+        </Router> */}
 
       <Router>
         <AuthProvider>
@@ -57,22 +49,23 @@ function App() {
                 <Route path="/login" element={<Signin />}></Route>
                 <Route path="/register" element={<Signup />}></Route>
                 <Route path="/" element={<PrivateRoute />}>
-                  <Route path="/" element={<Navigate to="/home"></Navigate>}></Route>
+                  <Route
+                    path="/"
+                    element={<Navigate to="/home"></Navigate>}
+                  ></Route>
                   <Route path="/home" element={<Home />}></Route>
                   <Route path="/profile" element={<Profile />}></Route>
-                  <Route path="/hostdetailpage/:id1" element={<HostDetailPage />}></Route>
+                  <Route
+                    path="/hostdetailpage/:id1"
+                    element={<HostDetailPage />}
+                  ></Route>
                   <Route path="/events" element={<CurrentEvents />}></Route>
                   <Route path="/discussion" element={<Discussion />}></Route>
-<<<<<<< HEAD
                   <Route
-                    path="/eventdetailpage/:id/"
+                    path="/eventdetailpage/:id"
                     element={<EventDetails />}
                   ></Route>
                   <Route path="/hostspage" element={<HostsPage />}></Route>
-=======
-                  <Route path="/event-detail/:id" element={<EventDetails />}></Route>
->>>>>>> main
-                  <Route path="*" element={<Home/>}></Route>
                 </Route>
               </Routes>
             </div>

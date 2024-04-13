@@ -13,14 +13,13 @@ const NavBar = () => {
       </div>
       <div className="navbar-list">
         <ul>
-
-        <Link to="/home">
+          <Link to="/home">
             <li className="navitem">Home</li>
           </Link>
           <Link to="/events">
             <li className="navitem">Events</li>
           </Link>
-          <Link to="/hosts">
+          <Link to="/hostspage">
             <li className="navitem">Hosts</li>
           </Link>
           <Link to="/discussion">
@@ -28,15 +27,13 @@ const NavBar = () => {
           </Link>
 
           {user ? (
-            <li  className="navitem">
+            <li className="navitem">
               <span onClick={logoutUser}>Logout</span>
               {user && <span> Hello {user.name} </span>}
             </li>
           ) : (
             <Link to="/login">
-              <li className="navitem">
-                login
-              </li>
+              <li className="navitem">login</li>
             </Link>
           )}
         </ul>

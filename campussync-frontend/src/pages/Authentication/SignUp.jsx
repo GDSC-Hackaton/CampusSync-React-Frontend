@@ -77,7 +77,6 @@ const Signup = () => {
     e.preventDefault();
     if (validateForm()) {
       registerUser();
-      l
     } else {
       setShowError(true);
     }

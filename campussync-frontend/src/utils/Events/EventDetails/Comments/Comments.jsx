@@ -2,13 +2,27 @@ import React from "react";
 import "./comment.css";
 import { FaCircleUser } from "react-icons/fa6";
 
-function Comment({ item1,user }) {
+function Comment({ item1 }) {
+  const profilePicUrl = "https://natty.pythonanywhere.com";
+  const hasProfilePicUrl = item1.commentor.profile_pic.includes(profilePicUrl);
   return (
     <div className="comment-container">
       <div className="comment-topic">
-        <FaCircleUser size="2rem" />
+        {item1.commentor.profile_pic ? (
+          <img
+            src={
+              hasProfilePicUrl
+                ? item1.commentor.profile_pic
+                : profilePicUrl + item1.commentor.profile_pic
+            }
+            alt=""
+          />
+        ) : (
+          <FaCircleUser size="2rem" />
+        )}
+
         {/* <h1 className="1rem">John Cena</h1> */}
-        <h1 className="1rem">{user}</h1>
+        <h1 className="1rem">{item1.commentor.name}</h1>
       </div>
       <div className="comment-content">
         <p>
