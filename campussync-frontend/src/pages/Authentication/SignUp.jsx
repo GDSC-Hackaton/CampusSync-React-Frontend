@@ -149,7 +149,11 @@ const Signup = () => {
               </button>
             </form>
             <span style={{ margin: "15px" }}>
+<<<<<<< HEAD
               Already Registered?{" "}
+=======
+              Already Registered?
+>>>>>>> parent of b39af38 (final frontend push)
               <Link to="/" style={{ color: "red" }}>
                 Login
               </Link>
