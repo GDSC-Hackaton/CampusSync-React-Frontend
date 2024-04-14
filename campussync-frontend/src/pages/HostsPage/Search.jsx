@@ -1,38 +1,27 @@
 import React, { useState } from "react";
 import "./search.css";
+import axios from "axios";
+import Endpoint from "../../api";
 
-function Search({ choicefunction }) {
-  const [choice, setChoice] = useState("");
-  console.log(choice);
-
-  const handleEvent = (e) => {
-    e.preventDefault();
-    console.log(choice);
-    choicefunction(choice);
+function Search({ setHosts }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSubmit = async () => {
+    const response = await axios.get(`${Endpoint()}user/hosts?search=${searchTerm}`);
+    setHosts(response.data)
   };
 
-  const handleSubmission = (e) => {
-    e.preventDefault();
-    setChoice(e.target.value);
-  };
   return (
     <>
       <div className="search-container">
-      <form
-            onSubmit={handleEvent}
-            className="search-form"
-          >
-            <input
-              type="text"
-              className="search-input"
-              placeholder="search for questions ..."
-              onChange={handleSubmission}
-              value={choice}
-            />
-            <button className="search-btn">Search</button>
-          </form>
-   
-        
+        <form onSubmit={(e)=>{e.preventDefault() , handleSubmit()}} className="search-form">
+          <input
+            type="text"
+            className="search-input"
+            placeholder="search for hosts ..."
+            onChange={(e)=>{setSearchTerm(e.target.value) , handleSubmit()}}
+          />
+          <button className="search-btn">Search</button>
+        </form>
       </div>
     </>
   );

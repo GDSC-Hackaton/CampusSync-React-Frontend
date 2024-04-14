@@ -161,9 +161,9 @@ const Signup = () => {
               )}
             </form>
             <span style={{ margin: "15px" }}>
-              Already Registered?
-              <Link to="/" style={{ color: "red" }}>
-                Login
+              Already Registered? 
+              <Link to="/" style={{ paddingLeft:"10px", color: "red" }}>
+                 Login
               </Link>
             </span>
           </div>

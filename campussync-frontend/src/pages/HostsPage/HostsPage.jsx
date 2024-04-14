@@ -5,17 +5,11 @@ import HostsCard from "./HostsCard";
 import "./hostpage.css";
 import "./hostcard.css";
 import HostOverlay from "./HostOverlay";
+import { Link } from "react-router-dom";
 function HostsPage() {
-  const [hostchoice, setHostChoice] = useState(null);
-  const [userchoice, setUserChoice] = useState(null);
+  const [hosts, setHosts] = useState(null);
   const [showOverlay, setshowOverlay] = useState(false);
   const [loading, setLoading] = useState(true);
-  const getChoice = (choice) => {
-    console.log(choice);
-    setHostChoice(choice.toLowerCase());
-  };
-
-  console.log(hostchoice);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -24,7 +18,7 @@ function HostsPage() {
           "https://natty.pythonanywhere.com/user/hosts/"
         );
         console.log(response.data);
-        setUserChoice(response.data);
+        setHosts(response.data);
         setLoading(false);
       } catch (error) {
         console.log("Error fetching data:", error);
@@ -46,18 +40,30 @@ function HostsPage() {
         <button
           onClick={() => setshowOverlay(!showOverlay)}
           className="add-event-btn"
+          style={{ top: "15%" }}
         >
           Be a Host <i className="fa fa-plus"></i>
         </button>
       </>
-      <Search choicefunction={getChoice} />
+      <Search setHosts={setHosts} />
       <div className="hostspage-hosts">
-        {hostchoice !== null
-          ? userchoice
-              .filter((item) => item.hostname.toLowerCase() === hostchoice)
-              .map((item) => <HostsCard key={item.id} item={item} />)
-          : userchoice &&
-            userchoice.map((item) => <HostsCard key={item.id} item={item} />)}
+        {loading ? (
+          <img src="loading.gif" alt="Loading..." />
+        ) : hosts.length > 0 ? (
+          hosts.map((host) => <HostsCard host={host} />)
+        ) : (
+          <div style={{ marginLeft: "30%", textAlign:"center", boxShadow: "none" }}>
+            <div style={{ textAlign: "center" }}>
+              <span style={{ fontSize: "20px" }}>
+                No Hosts found
+
+              </span>
+              <div className="answer">
+                <img src="/empty.gif" />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

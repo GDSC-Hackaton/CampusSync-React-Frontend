@@ -207,7 +207,7 @@ const Answer = () => {
               encType="multipart/form-data"
             >
               <div className="event-inputs">
-                <h3>{question.question}</h3>
+                <h3 style={{padding:"10px"}}>{question.question}</h3>
                 <textarea
                   onChange={handleChange}
                   type="text"

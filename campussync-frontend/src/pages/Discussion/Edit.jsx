@@ -42,7 +42,7 @@ const EditQuestion = ({
             encType="multipart/form-data"
           >
             <div className="event-inputs">
-              <h2>Edit your Question</h2>
+              <h2 style={{padding:"10px"}}>Edit your Question</h2>
               <textarea
                 type="text"
                 required

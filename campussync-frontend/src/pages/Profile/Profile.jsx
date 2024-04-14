@@ -100,7 +100,7 @@ const AppointedEvents = ({ user_id }) => {
         <div style={{ margin: "20px", boxShadow: "none" }}>
           <div style={{ textAlign: "center" }}>
             <span style={{ fontSize: "20px" }}>
-              you haven no Scheduled events add some
+              you have no Scheduled events add some
               <Link to="/events">
                 <button
                   style={{
@@ -128,8 +128,8 @@ const AppointedEvents = ({ user_id }) => {
 const ProfileDetail = ({ ProfileDetail }) => {
   return (
     <div className="profile-detail">
-      <span style={{ padding: "20px" }}>Username : {ProfileDetail.name}</span>
-      <span style={{ padding: "20px" }}>Email : {ProfileDetail.email}</span>
+      <span style={{ padding: "10px" }}>Username : {ProfileDetail.name}</span>
+      <span style={{ padding: "10px" }}>Email : {ProfileDetail.email}</span>
     </div>
   );
 };

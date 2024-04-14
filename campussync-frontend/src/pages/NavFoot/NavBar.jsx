@@ -40,16 +40,25 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-last">
-       
+        {user ? (
           <img
             className="navbar-profile"
             src={profile.profile_pic ? profile.profile_pic : "default.jpg"}
           />
-        <div className="dropdown">
-          <div className="dropdown-menu">
-            {user ? (
+        ) : (
+          <Link to="/login">
+            <div style={{ margin: "20px" }}>
+              <button  className="signin-btn">
+                Sign In
+              </button>
+            </div>
+          </Link>
+        )}
+        {user ? (
+          <div className="dropdown">
+            <div className="dropdown-menu">
               <>
-                <div className="" >
+                <div className="">
                   <img
                     className="drop-profile"
                     src={
@@ -59,21 +68,21 @@ const NavBar = () => {
                 </div>
 
                 <ul style={{ padding: "10px" }}>
-                  {user &&  <Link to={`/profile/${user.user_id}`}><li> Your Profile </li></Link>}
+                  {user && (
+                    <Link to={`/profile/${user.user_id}`}>
+                      <li> Your Profile </li>
+                    </Link>
+                  )}
                   <li className="logout" onClick={logoutUser}>
                     Logout
                   </li>
                 </ul>
               </>
-            ) : (
-              <Link to="/login">
-                <ul style={{padding:"10px"}}>
-                  <li>login</li>
-                </ul>
-              </Link>
-            )}
+            </div>
           </div>
-        </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

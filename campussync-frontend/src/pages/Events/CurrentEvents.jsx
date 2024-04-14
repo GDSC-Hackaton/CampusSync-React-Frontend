@@ -175,7 +175,8 @@ const CurrentEvents = () => {
 
         {loading ? (
           <img src="loading.gif" alt="Loading..." />
-        ) : filteredEvents.length > 0 ? (
+        ) :
+         filteredEvents.length > 0 ? (
           filteredEvents.map((event, index) => (
             <div key={event.id} className="event_card">
               <img

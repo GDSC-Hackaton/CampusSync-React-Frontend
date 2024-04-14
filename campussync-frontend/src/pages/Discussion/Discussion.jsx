@@ -19,7 +19,7 @@ const Discussion = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [questionData, setQuestionData] = useState({
     question: "",
-    author_id: user.user_id,
+    author_id: user?.user_id,
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -215,7 +215,7 @@ const Discussion = () => {
                         {question.downvotes}
                       </button>
                       <button className="share-btn">
-                        {user.user_id === question.author?.id ? (
+                        {user?.user_id === question.author?.id ? (
                           <>
                             <i
                               onClick={() => {

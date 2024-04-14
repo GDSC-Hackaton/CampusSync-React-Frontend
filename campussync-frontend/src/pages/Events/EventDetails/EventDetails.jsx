@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./event-details.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthContext from "../../../context/AuthContext";
 import CongratulationPopout from "./CongratulationPopout/CongratulationPopout";
 import AlreadyRegisteredPopout from "./AlreadyRegisteredPopout/AlreadyRegisteredPopout";
@@ -160,8 +160,8 @@ function EventDetails() {
                   {timeFormater(choice.date_posted)}
                 </span>
                 <span>
-                  <i className="fa fa-user"></i>Hosted by{" "}
-                  {choice.host ? choice.host.hostname : ""}
+                  <i className="fa fa-user"></i>Hosted by
+                  {choice.host ? <Link style={{textTransform:"uppercase"}} to={`/hosts/${choice.host.id}`}> {choice.host.hostname}</Link>  : ""}
                 </span>
                 <button
                   onClick={(e) => handleRSVP(e, user.user_id, id)}
@@ -207,7 +207,7 @@ function EventDetails() {
                   />
                   <div className="comment-head">
                     <span>{comment.commentor.name}</span>
-                    <span>feb 22</span>
+                    <span>{timeFormater(comment.date_posted)}</span>
                   </div>
                 </div>
 

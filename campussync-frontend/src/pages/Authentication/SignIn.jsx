@@ -86,7 +86,7 @@ const Signin = () => {
                 </button>
               )}
             </form>
-            <span style={{ margin: "10px" }}>
+            <span style={{ margin: "20px" }}>
               Haven't Registered Yet ?{" "}
               <Link to="/register" style={{ color: "red" }}>
                 Register
