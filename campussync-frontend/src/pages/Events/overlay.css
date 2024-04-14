@@ -17,6 +17,8 @@
   animation: scaleBox 0.3s ease-in-out 0s 1;
 }
 
+
+
 @keyframes scaleBox {
   from {
     transform: scale(0);
