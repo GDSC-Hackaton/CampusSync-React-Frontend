@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./HostDetail.css";
@@ -31,24 +30,33 @@ const HostDetailCard = ({ item2, name, host }) => {
   };
 
   return (
-    <div className="host-detail-card">
-      <div className="host-detail-image">
-        <img src={item2.account_pic} alt="Host Profile" />
+    <div
+      className="host-detail-cont"
+      style={{ backgroundImage: `url(${item2.account_pic})` }}
+    >
+      <div className="host-detail-card">
+     
+        <div className="host-detail-info">
+          <h2 style={{marginLeft:"30px"}}>{item2.hostname}</h2>
+          <div style={{ width:'80%', marginLeft:"30px"}}>
+          <span style={{ textAlign:"justify"}}>{item2.description}</span>
+
+          </div>
+          {isFollowing ? (
+            <button style={{marginLeft:"30px"}} className="follow-button" onClick={handleFollow}>
+              Following
+            </button>
+          ) : (
+            <button style={{marginLeft:"30px"}}className="follow-button" onClick={handleFollow}>
+              Follow
+            </button>
+          )}
+        </div>
+
       </div>
-      <div className="host-detail-info">
-        <h2>{item2.hostname}</h2>
-        <p>{item2.description}</p>
-        {isFollowing ? (
-          <button className="follow-button" onClick={handleFollow}>
-            Following
-          </button>
-        ) : (
-          <button className="follow-button" onClick={handleFollow}>
-            Follow
-          </button>
-        )}
-      </div>
+
     </div>
+    
   );
 };
 

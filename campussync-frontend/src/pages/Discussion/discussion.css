@@ -7,7 +7,7 @@
 }
 .discussion-grid {
     display: grid;
-    grid-template-columns: 1fr 3fr ;
+    grid-template-columns: 3fr 1fr ;
     
 }
 
@@ -15,13 +15,17 @@
 .grid-column {
     margin:20px;
     height: auto;
+    margin-left: 150px;
+}
+.search-form {
+    width: 100%;
 }
 .search-input {
-    width: 80%;
+    width: 87%;
     padding:10px;
     outline: none;
     border: 1px solid;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 .search-btn,.add-question {
     padding:10px 20px;
@@ -29,7 +33,7 @@
     background-color: black;
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 5px;
 }
 @media screen and (max-width: 600px) {
     .left {
@@ -94,7 +98,8 @@
 .question {
     width: 100%;
     overflow: hidden;
-    text-decoration: underline;
+    font-size: 1.5rem;
+    padding-bottom: 5px;
 }
 .hidden {
     opacity: 0;

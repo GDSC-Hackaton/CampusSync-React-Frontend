@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <div className="footer">
@@ -7,7 +9,10 @@ const Footer = () => {
         </div>
         <div>
           <i className="fa-brands fa-facebook-f"></i>
-          <i className="fa-brands fa-github"></i>
+          <Link target="_blank" to="https://github.com/GDSC-Hackaton/CampusSync-React-Frontend">
+            <i className="fa-brands fa-github"></i>
+          </Link>
+
           <i className="fa-brands fa-linkedin"></i>
         </div>
       </div>

@@ -1,17 +1,11 @@
-
-
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { IoSend } from "react-icons/io5";
-import { IoLocationSharp } from "react-icons/io5";
-import { IoIosTimer } from "react-icons/io";
-import { MdAddComment } from "react-icons/md";
 import "./event-details.css";
-import Comment from "./Comments/Comments";
 import { useParams } from "react-router-dom";
 import AuthContext from "../../../context/AuthContext";
 import CongratulationPopout from "./CongratulationPopout/CongratulationPopout";
 import AlreadyRegisteredPopout from "./AlreadyRegisteredPopout/AlreadyRegisteredPopout";
+import timeFormater from "../../../utils/timeformater";
 
 function EventDetails() {
   const { id } = useParams();
@@ -27,7 +21,7 @@ function EventDetails() {
   const [showCongratulation, setShowCongratulation] = useState(false);
   const [showAlreadyRegistered, setShowAlreadyRegistered] = useState(false);
   const [isCommentSubmitted, setIsCommentSubmitted] = useState(false);
-  console.log("thsi is the param id",id);
+  console.log("thsi is the param id", id);
   useEffect(() => {
     setPostComment({ ...postcomment, event: id });
   }, [id]);
@@ -131,16 +125,7 @@ function EventDetails() {
           },
         });
         console.log(res.data);
-      //  if (
-      //    res.data.commentor &&
-      //    typeof res.data.commentor === "object" &&
-      //    res.data.commentor.profile_pic
-      //  ) {
-      //    // Concatenate the profile pic URL
-      //    res.data.commentor.profile_pic =
-      //      "https://natty.pythonanywhere.com" + res.data.commentor.profile_pic;
-      //  }
-        setComment((res.data || []).reverse());
+        fetchComments();
         setPostComment({
           commentor_id: postcomment.commentor_id,
           content: "",
@@ -155,33 +140,36 @@ function EventDetails() {
   };
 
   return (
-    <div className="details-container">
-      <div className="details-image">
-        <img src={choice.poster} alt="" />
-      </div>
-      <div className="details-content">
-        <div className="details-description">
-          <h1>Description</h1>
-          <p>{choice.description}</p>
-        </div>
-        <div className="details-address">
-          <h1>Details</h1>
-          <div className="details-address-detail">
-            <IoLocationSharp />
-            <span>{choice.address}</span>
-          </div>
-          <div className="details-address-detail">
-            <IoIosTimer />
-            <span>{choice.date_posted}</span>
-          </div>
-          <div>
-            {/* ************************************************************************************************** */}
-            {choice.host?(<h3>Hosted By: {choice.host.hostname}</h3>):(<h3>Hosted By:</h3>)}
-            
-            {/* ************************************************************************************************** */}
-            <button onClick={(e) => handleRSVP(e, user.user_id, id)}>
-              RSVP for Event
-            </button>
+    <>
+      <div className="detail-container">
+        <div className="detail-header" style={{ backgroundImage: `url(${choice.poster})` }}>
+          <div className="detail-side">
+            <div className="detail-description">
+              <span className="detail-desc-head">Description</span>
+              <div>{choice.description}</div>
+            </div>
+            <div className="detail-box">
+              <span className="detail-desc-head">Detail</span>
+              <div className="detail-box-2">
+                <span>
+                  <i className="fa-solid fa-location-dot"></i>
+                  {choice.address}
+                </span>
+                <span>
+                  <i className="fa-regular fa-clock"></i>
+                  {timeFormater(choice.date_posted)}
+                </span>
+                <span>
+                  <i className="fa fa-user"></i>Hosted by{" "}
+                  {choice.host ? choice.host.hostname : ""}
+                </span>
+                <button
+                  onClick={(e) => handleRSVP(e, user.user_id, id)}
+                  className="rsvp-btn">
+                  RSVP
+                </button>
+              </div>
+            </div>
           </div>
           {showCongratulation && (
             <CongratulationPopout
@@ -194,32 +182,42 @@ function EventDetails() {
             />
           )}
         </div>
-      </div>
-      <div style={{ paddingLeft: "130px", marginTop: "75px" }}>
-        <h1>Comments</h1>
-        <MdAddComment size="3rem" />
-      </div>
+        <div className="comments-container">
+          <span style={{ fontSize: "2rem", paddingBottom: "10px" }}>
+            Comments
+          </span>
+          <form onSubmit={handleSubmit} className="comment-form">
+            <input
+              className="comment-text"
+              value={postcomment.content}
+              onChange={handleCommentChange}
+              placeholder="share your opinion"
+            />
+            <button className="comment-btn">
+              <i className="fa fa-paper-plane"></i>Send
+            </button>
+          </form>
+          <div className="comment-card-container">
+            {comment.map((comment) => (
+              <div className="comment-card">
+                <div style={{ display: "flex" }}>
+                  <img
+                    src={comment.commentor.profile_pic}
+                    className="comment-pic"
+                  />
+                  <div className="comment-head">
+                    <span>{comment.commentor.name}</span>
+                    <span>feb 22</span>
+                  </div>
+                </div>
 
-      <div className="details-comment">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Comment..."
-            value={postcomment.content}
-            onChange={handleCommentChange}
-          ></input>
-        </form>
-        <div style={{ paddingRight: "50px" }} onClick={handleSubmit}>
-          <IoSend size="2rem" />
+                <div className="comment-data">{comment.content}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div>
-        {comment &&
-          comment.map((item) => <Comment key={item.id} item1={item} />)}
-      </div>
-    </div>
+    </>
   );
 }
-
 export default EventDetails;
-

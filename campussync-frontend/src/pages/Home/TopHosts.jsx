@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import "./TopHosts.css";
+import { Link } from 'react-router-dom';
 
 const EventHostCard = ({ name, description, imageUrl }) => {
   return (
@@ -8,7 +9,7 @@ const EventHostCard = ({ name, description, imageUrl }) => {
       <img src={imageUrl} alt={name} />
       <div className="host-info">
         <h3>{name}</h3>
-        <p>Description: {description}</p>
+        <p> {description}</p>
       </div>
     </div>
   );
@@ -39,7 +40,9 @@ const TopHosts = () => {
           <EventHostCard key={index} imageUrl={host.account_pic} name={host.hostname} description={host.description} />
         ))}
       </div>
-      <button className="view-more">View More</button>
+      <Link to="/hosts">
+      <button className="view-more"> More <i class="fa-solid fa-circle-chevron-down"></i></button>
+      </Link>
     </section>
   );
 };

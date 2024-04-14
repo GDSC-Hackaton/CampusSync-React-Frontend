@@ -152,29 +152,32 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay, fetchEvents }) => {
               {showError && <ErrorCard error={error} />}
               <div style={{ marginTop: "20px" }}>
                 <ul className="host-choices">
-                <span>As which host</span>
-
                   {hostsUnderUser.length > 0 ? (
-                    hostsUnderUser.map((host) => (
-                      
-                        <li
-                          style={{
-                            backgroundColor:
-                              eventData.host_id === host.id ? "#ac95e6" : "",
-                          }}
-                          onClick={() =>
-                            setData({ ...eventData, host_id: host.id })
-                          }
-                        >
-                          {host.hostname}
-                        </li>
-                      
-                    ))
+                    <div>
+                      <span>As which host</span>
+                      <ul className="host-choices">
+                        {hostsUnderUser.map((host) => (
+                          <li
+                            key={host.id}
+                            style={{
+                              backgroundColor:
+                                eventData.host_id === host.id ? "#ac95e6" : "",
+                            }}
+                            onClick={() =>
+                              setData({ ...eventData, host_id: host.id })
+                            }
+                          >
+                            {host.hostname}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ) : (
-                    <Link to="/hosts" style={{ color: "red" }}>
-                      You Can't create an Event if your not a host?
-                      <li style={{ color: "black" }}>Be a Host</li>{" "}
-                    </Link>
+                    <div>
+                      <Link to="/hosts" style={{ color: "red" }}>
+                        You Can't create an Event if you're not a host? <li style={{ color: "black" }}>Be a Host</li>
+                      </Link>
+                    </div>
                   )}
                 </ul>
               </div>
@@ -194,11 +197,7 @@ const AddEventOverlay = ({ showOverlay, setshowOverlay, fetchEvents }) => {
                 <img style={{ width: "70px" }} src="loading.gif" />
               </span>
             ) : (
-              <button
-                className="create-event-btn"
-              >
-                Create Event
-              </button>
+              <button className="create-event-btn">Create Event</button>
             )}
           </form>
         </div>

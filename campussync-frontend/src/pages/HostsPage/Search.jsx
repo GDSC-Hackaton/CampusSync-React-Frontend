@@ -4,7 +4,7 @@ import "./search.css";
 function Search({ choicefunction }) {
   const [choice, setChoice] = useState("");
   console.log(choice);
-  
+
   const handleEvent = (e) => {
     e.preventDefault();
     console.log(choice);
@@ -18,18 +18,21 @@ function Search({ choicefunction }) {
   return (
     <>
       <div className="search-container">
-        <form id="search-host" onSubmit={handleEvent}>
-          <input
-            type="text"
-            placeholder="Search for Hosts...."
-            value={choice}
-            onChange={handleSubmission}
-    
-          ></input>
-        </form>
-        <button type="submit" form="search-host">
-          Search
-        </button>
+      <form
+            onSubmit={handleEvent}
+            className="search-form"
+          >
+            <input
+              type="text"
+              className="search-input"
+              placeholder="search for questions ..."
+              onChange={handleSubmission}
+              value={choice}
+            />
+            <button className="search-btn">Search</button>
+          </form>
+   
+        
       </div>
     </>
   );

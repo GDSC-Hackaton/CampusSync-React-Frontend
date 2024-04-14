@@ -25,9 +25,10 @@ function App() {
               <Routes>
                 <Route path="/login" element={<Signin />}></Route>
                 <Route path="/register" element={<Signup />}></Route>
+                <Route path="/" element={<Navigate to="/home"></Navigate>}></Route>
+                <Route path="/home" element={<Home />}></Route>
                 <Route path="/" element={<PrivateRoute />}>
-                  <Route path="/" element={<Navigate to="/home"></Navigate>}></Route>
-                  <Route path="/home" element={<Home />}></Route>
+                 
                   <Route path="/profile/:user_id" element={<Profile />}></Route>
                   <Route path="/hosts" element={<HostsPage />}></Route>
                   <Route path="/hosts/:hostid" element={<HostDetailPage />}></Route>

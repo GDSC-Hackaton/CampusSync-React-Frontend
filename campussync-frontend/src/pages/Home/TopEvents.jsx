@@ -46,7 +46,7 @@ const TopEvents = () => {
           />
         ))}
       </div>
-      <button className="view-more"><Link to="/events">View More</Link></button>
+      <button className="view-more"><Link to="/events">More<i class="fa-solid fa-circle-chevron-down"></i></Link></button>
     </div>
   );
 };

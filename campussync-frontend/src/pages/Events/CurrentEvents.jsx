@@ -93,7 +93,6 @@ const CurrentEvents = () => {
       console.error("Error downvoting the event:", error);
     }
   };
-
   const fetchEvents = async () => {
     try {
       const response = await axios.get(`${Endpoint()}event/events`);
@@ -171,7 +170,7 @@ const CurrentEvents = () => {
           onClick={() => setshowOverlay(!showOverlay)}
           className="add-event-btn"
         >
-          <i className="fa fa-plus"></i>
+          Add Event <i className="fa fa-plus"></i>
         </button>
 
         {loading ? (
@@ -187,25 +186,41 @@ const CurrentEvents = () => {
               <div className="event_detail">
                 <Link to={`/event-detail/${event.id}/`}>
                   <h3>{event.name}</h3>
-                  <p>Place: {event.address}</p>
-                  <p>Time: {timeFormater(event.date_posted)}</p>
-                  <p>Hosted by:{event.host ? event.host.hostname : ""}</p>
+                  <p><i className="fa-solid fa-location-dot"></i> {event.address}</p>
+                  <p><i className="fa-regular fa-clock"></i> {timeFormater(event.date_posted)}</p>
+                  <p><i className="fa fa-user"></i> Hosted by:{event.host ? event.host.hostname : ""}</p>
                 </Link>
               </div>
               <div className="voting">
-                <button onClick={() => handleUpvote(event.id, user.user_id)}>
-                  <i className="fa-solid fa-thumbs-up"></i> {event.upvotes}
+                <button
+                  style={{ borderRadius: "20px" }}
+                  onClick={() => handleUpvote(event.id, user.user_id)}
+                >
+                  <i class="fa-solid fa-circle-up"></i>
+                  {event.upvotes}
                 </button>
-                <button onClick={() => handleDownvote(event.id, user.user_id)}>
-                  <i className="fa-solid fa-thumbs-down"></i> {event.downvotes}
+                <button
+                  style={{ borderRadius: "20px" }}
+                  onClick={() => handleDownvote(event.id, user.user_id)}
+                >
+                  <i class="fa-solid fa-circle-down"></i>
+                  {event.downvotes}
                 </button>
               </div>
             </div>
           ))
         ) : (
-          <div className="event_detail">
-            <h3>No Events Found</h3>
+          <div style={{ margin: "20px", boxShadow: "none" }}>
+          <div style={{ textAlign: "center" }}>
+            <span style={{ fontSize: "20px" }}>
+              Oops can't find anything !!!
+             
+            </span>
+            <div className="answer">
+              <img src="/empty.gif" />
+            </div>
           </div>
+        </div>
         )}
       </div>
     </>

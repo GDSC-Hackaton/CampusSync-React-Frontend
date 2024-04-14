@@ -24,11 +24,14 @@ const Following = ({ user_id }) => {
       {followingList.length > 0 ? (
         followingList.map((host) => (
           <Link to={`/hosts/${host.id}`}>
-                    <div className="following-box">
-            <img src={`http://natty.pythonanywhere.com/media/${host.account_pic}`} className="host-pic" />
-            <p>{host.hostname}</p>
-          </div></Link>
-
+            <div className="following-box">
+              <img
+                src={`http://natty.pythonanywhere.com/media/${host.account_pic}`}
+                className="host-pic"
+              />
+              <p>{host.hostname}</p>
+            </div>
+          </Link>
         ))
       ) : (
         <div style={{ margin: "10px auto", textAlign: "center" }}>
@@ -80,10 +83,16 @@ const AppointedEvents = ({ user_id }) => {
             />
             <div className="event-detail">
               <p style={{ fontSize: "1.5rem" }}>{event.name}</p>
-              <p> Place :{event.address}</p>
-              <p> when : {timeFormater( event.event_date)}</p>
-              <Link to={`/event-detail/${event.id}`}><button className="view-details">View Details</button></Link>
-              
+              <p>
+                <i class="fa-solid fa-location-dot"></i> {event.address}
+              </p>
+              <p>
+                <i class="fa-regular fa-clock"></i> :{" "}
+                {timeFormater(event.event_date)}
+              </p>
+              <Link to={`/event-detail/${event.id}`}>
+                <button className="view-details">View Details</button>
+              </Link>
             </div>
           </div>
         ))
@@ -119,11 +128,8 @@ const AppointedEvents = ({ user_id }) => {
 const ProfileDetail = ({ ProfileDetail }) => {
   return (
     <div className="profile-detail">
-      <span>Username : {ProfileDetail.name}</span>
-      <span>Email : {ProfileDetail.email}</span>
-      <button style={{ width: "30%" }} className="view-details">
-        Edit
-      </button>
+      <span style={{ padding: "20px" }}>Username : {ProfileDetail.name}</span>
+      <span style={{ padding: "20px" }}>Email : {ProfileDetail.email}</span>
     </div>
   );
 };
@@ -141,15 +147,18 @@ const QuestionUnderUser = ({ user_id }) => {
   }, [user_id]);
   return (
     <>
-      {questions.length > 0 &&
+      {questions.length > 0 ? (
         questions.map((question) => (
           <div key={question.id} className="question-card">
             <div className="q-head">
-              <img src={`${Endpoint()}${question.author?.profile_pic}`} className="q-creator" />
+              <img
+                src={`${Endpoint()}${question.author?.profile_pic}`}
+                className="q-creator"
+              />
               <span>
                 {question.author?.name}
                 <small style={{ color: "gray" }}> asked</small>
-                <br /> <small>{timeFormater( question.created_date)}</small>
+                <br /> <small>{timeFormater(question.created_date)}</small>
               </span>
             </div>
 
@@ -168,7 +177,33 @@ const QuestionUnderUser = ({ user_id }) => {
               </div>
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <div style={{ margin: "20px", boxShadow: "none" }}>
+          <div style={{ textAlign: "center" }}>
+            <span style={{ fontSize: "20px" }}>
+              you haven't asked a question yet start
+              <Link to="/discussion">
+                <button
+                  style={{
+                    margin: "5px",
+                    padding: "10px",
+                    borderRadius: "25px",
+                    border: "none",
+                    background: "purple",
+                    color: "white",
+                  }}
+                >
+                  here
+                </button>
+              </Link>
+            </span>
+            <div className="answer">
+              <img src="/empty.gif" />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
@@ -182,7 +217,7 @@ const Profile = () => {
     const response = await axios.get(`${Endpoint()}user/users/${user_id}/`);
     setprofile(response.data);
   };
-  
+
   const updateProfilePic = async (e) => {
     const file = e.target.files[0];
     const picData = new FormData();

@@ -110,29 +110,12 @@ const Discussion = () => {
             fetchQuestions={fetchQuestions}
           />
         )}
-        <div
-          className="grid-column left"
-          style={{ position: "sticky", top: 0 }}
-        >
-          <span>Start a discussion </span>
-          <button
-            onClick={() => setQuestionOverlay(!isQuestionOverlay)}
-            className="add-question"
-          >
-            <i className="fa fa-plus"></i>
-          </button>
-          <div>
-            <img
-              style={{ width: "100%", height: "100%", margin: "4px" }}
-              src="question.gif"
-            />
-          </div>
-        </div>
-        <div className="grid-column">
+           <div className="grid-column">
           <form
             onSubmit={(e) => {
               e.preventDefault(), handleSearch();
             }}
+            className="search-form"
           >
             <input
               type="text"
@@ -280,6 +263,21 @@ const Discussion = () => {
             )}
           </div>
         </div>
+        <div
+          className="grid-column left"
+          style={{ position: "sticky", top: 0 }}
+        >
+          <span>Start a discussion </span>
+          <button
+            onClick={() => setQuestionOverlay(!isQuestionOverlay)}
+            className="add-question"
+            
+          >
+            <i className="fa fa-plus"></i>
+          </button>
+
+        </div>
+     
       </div>
     </div>
   );

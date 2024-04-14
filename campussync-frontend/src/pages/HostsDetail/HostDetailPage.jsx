@@ -5,12 +5,12 @@ import "./HostDetail.css";
 import IndividualEvents from "./IndividualEvents";
 import { useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-
+import { Link } from "react-router-dom";
 const HostDetailPage = () => {
   const { hostid } = useParams();
-  const [choice,setChoice ] = useState(null);
+  const [choice, setChoice] = useState(null);
   const [events, setEvents] = useState([]);
-  const[follower,setFollower]=useState([]);
+  const [follower, setFollower] = useState([]);
   const url = "https://natty.pythonanywhere.com/user/events_by_host/";
   const { user, AuthUser } = useContext(AuthContext);
   useEffect(() => {
@@ -50,13 +50,34 @@ const HostDetailPage = () => {
     <div className="host-detail-page">
       <div className="host-detail-content">
         {choice ? (
-          <HostDetailCard item2={choice} name={user.user_id} host={follower}/>
+          <HostDetailCard item2={choice} name={user.user_id} host={follower} />
         ) : (
           <p>Loading...</p>
         )}
-        {events.map((item) => (
-          <IndividualEvents userid={hostid} item={item} name={choice?.hostname} />
-        ))}
+        <h1
+          style={{ background: "#ddd", padding: "10px", textAlign: "center" }}
+        >
+          Events by {choice?.hostname}
+        </h1>
+
+        {events.length > 0 ? (
+          events.map((item) => (
+            <IndividualEvents
+              userid={hostid}
+              item={item}
+              name={choice?.hostname}
+            />
+          ))
+        ) : (
+          <div style={{ margin: "10px auto", textAlign: "center" }}>
+            <span style={{ fontSize: "20px" }}>
+              {choice?.hostname} has no Events Yet !
+            </span>
+            <div className="answer">
+              <img style={{ width: "60%" }} src="/nofollow.gif" />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -3,12 +3,13 @@ import axios from "axios";
 import Search from "./Search";
 import HostsCard from "./HostsCard";
 import "./hostpage.css";
+import "./hostcard.css";
 import HostOverlay from "./HostOverlay";
 function HostsPage() {
   const [hostchoice, setHostChoice] = useState(null);
   const [userchoice, setUserChoice] = useState(null);
   const [showOverlay, setshowOverlay] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   const getChoice = (choice) => {
     console.log(choice);
     setHostChoice(choice.toLowerCase());
@@ -24,6 +25,7 @@ function HostsPage() {
         );
         console.log(response.data);
         setUserChoice(response.data);
+        setLoading(false);
       } catch (error) {
         console.log("Error fetching data:", error);
       }
@@ -33,18 +35,21 @@ function HostsPage() {
 
   return (
     <div className="hostpage-container">
-      {showOverlay && (
-        <HostOverlay
-          showOverlay={showOverlay}
-          setshowOverlay={setshowOverlay}
-        />
-      )}
-      <button
-        onClick={() => setshowOverlay(!showOverlay)}
-        className="add-event-btn"
-      >
-        <i className="fa fa-plus"></i>
-      </button>
+      <>
+        {showOverlay && (
+          <HostOverlay
+            showOverlay={showOverlay}
+            setshowOverlay={setshowOverlay}
+          />
+        )}
+
+        <button
+          onClick={() => setshowOverlay(!showOverlay)}
+          className="add-event-btn"
+        >
+          Be a Host <i className="fa fa-plus"></i>
+        </button>
+      </>
       <Search choicefunction={getChoice} />
       <div className="hostspage-hosts">
         {hostchoice !== null

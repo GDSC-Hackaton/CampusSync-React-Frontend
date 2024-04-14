@@ -101,6 +101,10 @@ li.choice:hover {
 }
 .event-detail {
   margin-left: 10px;
+  padding:5px;
+}
+.event-detail p {
+  padding:5px;
 }
 .view-details {
   padding: 10px;
