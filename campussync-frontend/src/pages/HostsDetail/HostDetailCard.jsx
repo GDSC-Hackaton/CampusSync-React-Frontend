@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // import React, { useContext, useEffect, useState } from "react";
 // import axios from "axios";
 // import "./HostDetail.css";
@@ -91,8 +90,6 @@
 
 // export default HostDetailCard;
 
-=======
->>>>>>> b39af38e6445f76a3884fe7f8420dc3e4cebca0f
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./HostDetail.css";
@@ -125,7 +122,6 @@ const HostDetailCard = ({ item2, name, host }) => {
   };
 
   return (
-<<<<<<< HEAD
     <div className="host-detail-card">
       <div className="host-detail-image">
         <img src={item2.account_pic} alt="Host Profile" />
@@ -142,35 +138,8 @@ const HostDetailCard = ({ item2, name, host }) => {
             Follow
           </button>
         )}
-=======
-    <div
-      className="host-detail-cont"
-      style={{ backgroundImage: `url(${item2.account_pic})` }}
-    >
-      <div className="host-detail-card">
-     
-        <div className="host-detail-info">
-          <h2 style={{marginLeft:"30px"}}>{item2.hostname}</h2>
-          <div style={{ width:'80%', marginLeft:"30px"}}>
-          <span style={{ textAlign:"justify"}}>{item2.description}</span>
-
-          </div>
-          {isFollowing ? (
-            <button style={{marginLeft:"30px"}} className="follow-button" onClick={handleFollow}>
-              Following
-            </button>
-          ) : (
-            <button style={{marginLeft:"30px"}}className="follow-button" onClick={handleFollow}>
-              Follow
-            </button>
-          )}
-        </div>
-
->>>>>>> b39af38e6445f76a3884fe7f8420dc3e4cebca0f
       </div>
-
     </div>
-    
   );
 };
 

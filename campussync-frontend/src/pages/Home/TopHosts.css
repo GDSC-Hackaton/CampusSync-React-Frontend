@@ -19,8 +19,6 @@
     width:80%; 
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease-in;
-
   }
  
   .event-host-card:hover{
@@ -46,16 +44,17 @@
   }
   
   .view-more {
+    background: #000;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     margin-top: 20px;
     cursor: pointer;
-    display: block;
-    background: none;
-    margin:10px auto;
-    width: 20%;
-    font-size: 2rem;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
   }
   
-
+  .view-more:hover {
+    background: #333;
+  }
   

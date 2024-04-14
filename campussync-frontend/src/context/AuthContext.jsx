@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { json, useNavigate } from "react-router-dom";
-import Endpoint from "../api";
 const AuthContext = createContext();
 
 export default AuthContext;
@@ -21,11 +20,11 @@ export const AuthProvider = ({ children }) => {
   );
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const endpoint = Endpoint();
   const loginUser = async (email, password) => {
+    console.log("login executed!!!!");
     try {
       const { data } = await axios.post(
-        `${endpoint}api/token/`,
+        "https://natty.pythonanywhere.com/api/token/",
         {
           email: email,
           password: password,
@@ -37,12 +36,15 @@ export const AuthProvider = ({ children }) => {
       navigate("/home");
     } catch (e) {
       setauthenticationError(e.response.data.detail);
+      console.log(e.response.data.detail);
     }
   };
+  console.log("authToken detail", authTokens);
   const updateToken = async () => {
+    console.log("token refresh");
     try {
       const { data } = await axios.post(
-        `${endpoint}/api/token/refresh/`,
+        "https://natty.pythonanywhere.com/api/token/refresh/",
         {
           refresh: authTokens.refresh,
         }

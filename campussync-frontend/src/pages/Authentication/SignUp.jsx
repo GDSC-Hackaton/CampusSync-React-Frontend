@@ -14,8 +14,6 @@ const Signup = () => {
   });
   const [showError, setShowError] = useState(false);
   const [error, setError] = useState("");
-  const [isRegistering, setIsRegistering] = useState(false);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...formdata, [name]: value });
@@ -79,11 +77,6 @@ const Signup = () => {
     e.preventDefault();
     if (validateForm()) {
       registerUser();
-<<<<<<< HEAD
-=======
-      setIsRegistering(true);
-      
->>>>>>> b39af38e6445f76a3884fe7f8420dc3e4cebca0f
     } else {
       setShowError(true);
     }
@@ -151,22 +144,14 @@ const Signup = () => {
                   name="confirm"
                 />
               </div>
-              {isRegistering ? (
-                <button type="button" className="register-btn">
-                  <span>
-                    <img style={{ width: "20px"}} src="login.gif" />
-                  </span>
-                </button>
-              ) : (
-                <button type="submit" className="register-btn">
-                  Register
-                </button>
-              )}
+              <button type="submit" className="register-btn">
+                Register
+              </button>
             </form>
             <span style={{ margin: "15px" }}>
-              Already Registered? 
-              <Link to="/" style={{ paddingLeft:"10px", color: "red" }}>
-                 Login
+              Already Registered?{" "}
+              <Link to="/" style={{ color: "red" }}>
+                Login
               </Link>
             </span>
           </div>
