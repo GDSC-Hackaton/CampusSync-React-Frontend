@@ -12,27 +12,41 @@
   object-fit: cover;
   filter: blur(3px);
 }
-.banner-card-for {
+.banner-card-for ,.edit-pic {
   position: absolute;
   left: 45%;
   top: 20%;
   border-radius: 50%;
   overflow: hidden;
 }
-.banner-img {
+.edit-pic {
+  position: absolute;
+  left: 45%;
+  top: 20%;
+  background-color: none;
+  border: none;
+  z-index: 4;
+  color: rgb(255, 255, 255);
+  font-size: 1.9rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1px);
+  padding:80px;
+}
+.banner-img{
   width: 200px;
   height: 200px;
   border-radius: 50%;
   transition: transform 0.3s ease-in;
   object-fit: cover;
 }
+
 .banner-img:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
 .profile-name {
   width: 100%;
-  margin-top: 100px;
+  margin-top: 150px;
   margin-left: 18px;
   font-size: 2rem;
   text-align: center;
@@ -56,6 +70,10 @@
   padding: 10px;
   list-style: none;
   box-shadow: 1px -1px 10px rgb(231, 231, 231);
+  font-size: 20px;
+}
+.choices-list li {
+  margin: 10px;
 }
 li.choice:hover {
   background-color: #f2f0f0;
@@ -80,10 +98,13 @@ li.choice:hover {
   width: 300px;
   height: 100%;
   object-fit: cover;
-  border-radius: 0px 50px 50px 0px;
 }
 .event-detail {
   margin-left: 10px;
+  padding:5px;
+}
+.event-detail p {
+  padding:5px;
 }
 .view-details {
   padding: 10px;
@@ -99,12 +120,14 @@ li.choice:hover {
   margin-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  
+  
 }
 .following-box {
+  
   text-align: center;
   font-size: 1.4rem;
-  margin: 10px;
+  margin: 30px;
   transition: all 0.3s ease-in-out;
 
 }

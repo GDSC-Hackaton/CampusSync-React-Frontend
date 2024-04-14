@@ -11,6 +11,7 @@ const Signin = () => {
   });
   const [showError, setShowError] = useState(false);
   const [error, setError] = useState("");
+  const [issigning, setIsSigning] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,8 +28,10 @@ const Signin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("sign in in in");
     if (validateForm()) {
       loginUser(formdata.email.trim(), formdata.password.trim());
+      setIsSigning(true);
     } else {
       setShowError(true);
     }
@@ -38,6 +41,7 @@ const Signin = () => {
     if (authenticationError) {
       setShowError(true);
       setError(authenticationError);
+      setIsSigning(false)
     }
   }, [authenticationError]);
 
@@ -70,11 +74,19 @@ const Signin = () => {
                   onChange={handleChange}
                 />
               </div>
-              <button type="submit" className="register-btn">
-                Login
-              </button>
+              {issigning ? (
+                <button type="button" className="register-btn">
+                  <span>
+                    <img style={{ width: "20px"}} src="login.gif" />
+                  </span>
+                </button>
+              ) : (
+                <button type="submit" className="register-btn">
+                  Login
+                </button>
+              )}
             </form>
-            <span style={{ margin: "10px" }}>
+            <span style={{ margin: "20px" }}>
               Haven't Registered Yet ?{" "}
               <Link to="/register" style={{ color: "red" }}>
                 Register
