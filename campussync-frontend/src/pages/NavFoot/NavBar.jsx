@@ -39,46 +39,9 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-last">
-<<<<<<< HEAD
         <Link to="/profile">
           <img className="navbar-profile" src="/default.jpg" />
         </Link>
-=======
-       
-          <img
-            className="navbar-profile"
-            src={profile.profile_pic ? profile.profile_pic : "default.jpg"}
-          />
-        <div className="dropdown">
-          <div className="dropdown-menu">
-            {user ? (
-              <>
-                <div className="" >
-                  <img
-                    className="drop-profile"
-                    src={
-                      profile.profile_pic ? profile.profile_pic : "default.jpg"
-                    }
-                  />
-                </div>
-
-                <ul style={{ padding: "10px" }}>
-                  {user &&  <Link to={`/profile/${user.user_id}`}><li> Your Profile </li></Link>}
-                  <li className="logout" onClick={logoutUser}>
-                    Logout
-                  </li>
-                </ul>
-              </>
-            ) : (
-              <Link to="/login">
-                <ul style={{padding:"10px"}}>
-                  <li>login</li>
-                </ul>
-              </Link>
-            )}
-          </div>
-        </div>
->>>>>>> parent of b39af38 (final frontend push)
       </div>
     </div>
   );
