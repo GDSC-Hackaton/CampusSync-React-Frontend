@@ -25,10 +25,9 @@
   font-family: var(--font-family);
   font-size: 2.2rem;
   color: rgb(0, 0, 0);
-  padding: 20px;
 }
 .signup-form {
-  margin: 20px;
+  margin: 10px;
 }
 .signup-input {
   display: block;
@@ -86,10 +85,9 @@
 
 .error-container {
   width: 80%;
-  margin: 10px;
   border:1px solid red;
   border-radius: 5px;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   padding: 10px;
   color:red;
   background-color: rgba(251, 16, 16, 0.2);
@@ -97,13 +95,4 @@
 label {
   color:rgb(152, 151, 151);
   font-size: 0.6rem;
-}
-.signin-btn {
-  padding: 15px; border-radius: 5px; 
-  background: rgb(83, 83, 225);
-  border:1px solid white;
-  color: white;
-}
-.signin-btn:hover{
-  background-color: rgb(95, 95, 247);
 }

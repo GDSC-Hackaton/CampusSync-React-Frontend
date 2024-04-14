@@ -26,7 +26,6 @@
 }
 
 .navitem {
-<<<<<<< HEAD
   display: inline-block;
   margin: 15px;
   font-size: 16px; /* Adjust font size */
@@ -49,23 +48,6 @@
 }
 
 .navbar-profile {
-=======
-  display: inline;
-  margin: 5px;
-  font-size: 16px;
-  color: black;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  transition: ransform 0.3s ease-in-out;
-}
-
-.navitem:hover {
-  color: #555657;
-  cursor: pointer;
-  transform: scale(1.05);
-}
-.navbar-profile,
-.drop-profile {
->>>>>>> b39af38e6445f76a3884fe7f8420dc3e4cebca0f
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -95,7 +77,6 @@ i {
   transition: transform 0.3s ease-in-out;
   color: #333333; /* Match icon color with text */
 }
-<<<<<<< HEAD
 
 i:hover {
   transform: scale(1.2);
@@ -103,87 +84,3 @@ i:hover {
 }
 
   
-=======
-.dropdown {
-  position: relative;
-  display: none;
-}
-.dropdown-menu {
-  position: absolute;
-  right: 25%;
-  top: 100%;
-  width: 250px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  z-index: 9999;
-  border: 1px solid #cacaca;
-  box-shadow: 2px 2px 5px #ddd;
-}
-.dropdown-menu::before {
-  content: "";
-  position: absolute;
-  top: -20px;
-  right: 15px;
-  border: 10px solid transparent;
-  border-bottom-color: #cacaca;
-}
-.dropdown-menu::after {
-  content: "";
-  position: absolute;
-  top: -18px;
-  right: 15px;
-  border: 10px solid transparent;
-  border-bottom-color: #fff;
-}
-.drop-profile {
-  width: 100%;
-  height: 70px;
-  border-radius: 10px 10px 0px 0px;
-  padding-top: 5px;
-}
-.dropdown ul {
-  list-style: none;
-}
-.dropdown li:hover {
-  background-color: #eeeeee;
-  cursor: pointer;
-}
-.dropdown li {
-  margin: 15px;
-}
-.navbar-last:hover .dropdown {
-  display: block;
-}
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 20px 10px; /* Add horizontal padding */
-  }
-
-  .navbar-logo, .navbar-profile {
-    margin: 10px auto; /* Center these items */
-    display: block;
-    width: 100px; /* Adjust width if necessary */
-    height: auto; /* Keep the aspect ratio */
-  }
-
-  .navitem {
-    font-size: 14px; /* Smaller font size for small screens */
-    margin: 12px auto; /* Increase margin and center items */
-    display: block; /* Ensure each nav item takes a full row */
-    width: 100%; /* Full width for better tap targets */
-    text-align: center; /* Center text */
-  }
-
-  .footer-flex {
-    padding: 15px 0; /* Increase padding */
-  }
-
-  .footer-logo {
-    width: 100px; /* Adjust size for consistency */
-    height: auto; /* Maintain aspect ratio */
-    margin: 0 auto; /* Center the logo */
-  }
-}
->>>>>>> b39af38e6445f76a3884fe7f8420dc3e4cebca0f
