@@ -2,19 +2,12 @@
   margin: 0;
   padding: 0;
 }
-<<<<<<< HEAD
 :root { 
   font-family: Poppins;
-=======
-:root {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
->>>>>>> b39af38e6445f76a3884fe7f8420dc3e4cebca0f
 }
 body {
   overflow-x: hidden;
   font-family: var(--font-family);
-
 }
 .wrapper {
   width: 100vw;

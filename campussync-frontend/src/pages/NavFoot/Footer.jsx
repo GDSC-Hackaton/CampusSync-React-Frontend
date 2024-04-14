@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const Footer = () => {
   return (
     <div className="footer">
@@ -8,12 +6,9 @@ const Footer = () => {
           <img className="footer-logo" src="/logocampus.png" />
         </div>
         <div>
-          <i className="fa-brands fa-facebook-f"></i>
-          <Link target="_blank" to="https://github.com/GDSC-Hackaton/CampusSync-React-Frontend">
-            <i className="fa-brands fa-github"></i>
-          </Link>
-
-          <i className="fa-brands fa-linkedin"></i>
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-brands fa-github"></i>
+          <i class="fa-brands fa-linkedin"></i>
         </div>
       </div>
     </div>

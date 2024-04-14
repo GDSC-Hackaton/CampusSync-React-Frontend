@@ -1,11 +1,7 @@
 import React, { useContext } from "react";
 import "./home.css";
 import TopEvents from "./TopEvents";
-<<<<<<< HEAD
 import TopHosts from "./TopHosts"
-=======
-import TopHosts from "./TopHosts";
->>>>>>> b39af38e6445f76a3884fe7f8420dc3e4cebca0f
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 const Home = () => {
